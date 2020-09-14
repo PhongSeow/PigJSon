@@ -8,14 +8,3 @@ Source code directory
 
 Bin
 Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET Or C# project.
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
