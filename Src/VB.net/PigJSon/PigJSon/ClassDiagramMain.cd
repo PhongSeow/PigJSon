@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PigJSon.PigJSon">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="PigJSon.PigJSon.xpJSonEleType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PigJSon.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="PigJSon.PigJSon.xpSymbolType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PigJSon.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AACAUAAUAEJgAAohAAAACAICCAaEAARQgAACAgCBAAw=</HashCode>
+      <FileName>PigJSon.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
