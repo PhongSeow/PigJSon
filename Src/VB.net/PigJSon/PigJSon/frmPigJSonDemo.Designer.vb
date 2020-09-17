@@ -31,33 +31,37 @@ Partial Class frmPigJSonDemo
         Me.ArrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ParseToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowJSonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SoewPhongHomePageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PiggyJSonPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ShowJSonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssembleDemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SimpleElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'tbMain
         '
         Me.tbMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbMain.Location = New System.Drawing.Point(0, 28)
+        Me.tbMain.Location = New System.Drawing.Point(0, 32)
         Me.tbMain.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbMain.Multiline = True
         Me.tbMain.Name = "tbMain"
         Me.tbMain.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.tbMain.Size = New System.Drawing.Size(884, 310)
+        Me.tbMain.Size = New System.Drawing.Size(994, 374)
         Me.tbMain.TabIndex = 0
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.JSonToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(5, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(884, 28)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(994, 32)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -65,86 +69,99 @@ Partial Class frmPigJSonDemo
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(46, 24)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(56, 28)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(104, 24)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(141, 34)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'JSonToolStripMenuItem
         '
-        Me.JSonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AssembleToolStripMenuItem, Me.ArrayToolStripMenuItem, Me.ToolStripMenuItem1, Me.ParseToolStripMenuItem1, Me.ShowJSonToolStripMenuItem})
+        Me.JSonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AssembleToolStripMenuItem, Me.ArrayToolStripMenuItem, Me.ToolStripMenuItem1, Me.ParseToolStripMenuItem1, Me.ShowJSonToolStripMenuItem, Me.AssembleDemoToolStripMenuItem})
         Me.JSonToolStripMenuItem.Name = "JSonToolStripMenuItem"
-        Me.JSonToolStripMenuItem.Size = New System.Drawing.Size(55, 24)
+        Me.JSonToolStripMenuItem.Size = New System.Drawing.Size(65, 28)
         Me.JSonToolStripMenuItem.Text = "&JSon"
         '
         'AssembleToolStripMenuItem
         '
         Me.AssembleToolStripMenuItem.Name = "AssembleToolStripMenuItem"
-        Me.AssembleToolStripMenuItem.Size = New System.Drawing.Size(220, 24)
+        Me.AssembleToolStripMenuItem.Size = New System.Drawing.Size(278, 34)
         Me.AssembleToolStripMenuItem.Text = "Assemble NotArray"
         '
         'ArrayToolStripMenuItem
         '
         Me.ArrayToolStripMenuItem.Name = "ArrayToolStripMenuItem"
-        Me.ArrayToolStripMenuItem.Size = New System.Drawing.Size(220, 24)
+        Me.ArrayToolStripMenuItem.Size = New System.Drawing.Size(278, 34)
         Me.ArrayToolStripMenuItem.Text = "Assemble Array"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(217, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(275, 6)
         '
         'ParseToolStripMenuItem1
         '
         Me.ParseToolStripMenuItem1.Name = "ParseToolStripMenuItem1"
-        Me.ParseToolStripMenuItem1.Size = New System.Drawing.Size(220, 24)
+        Me.ParseToolStripMenuItem1.Size = New System.Drawing.Size(278, 34)
         Me.ParseToolStripMenuItem1.Text = "Parse JSon"
+        '
+        'ShowJSonToolStripMenuItem
+        '
+        Me.ShowJSonToolStripMenuItem.Name = "ShowJSonToolStripMenuItem"
+        Me.ShowJSonToolStripMenuItem.Size = New System.Drawing.Size(278, 34)
+        Me.ShowJSonToolStripMenuItem.Text = "Show JSon Value"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SoewPhongHomePageToolStripMenuItem, Me.PiggyJSonPageToolStripMenuItem, Me.ToolStripMenuItem2, Me.AboutToolStripMenuItem1})
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(56, 24)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(67, 28)
         Me.AboutToolStripMenuItem.Text = "&Help"
-        '
-        'AboutToolStripMenuItem1
-        '
-        Me.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1"
-        Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(152, 24)
-        Me.AboutToolStripMenuItem1.Text = "About"
         '
         'SoewPhongHomePageToolStripMenuItem
         '
         Me.SoewPhongHomePageToolStripMenuItem.Name = "SoewPhongHomePageToolStripMenuItem"
-        Me.SoewPhongHomePageToolStripMenuItem.Size = New System.Drawing.Size(325, 24)
+        Me.SoewPhongHomePageToolStripMenuItem.Size = New System.Drawing.Size(405, 34)
         Me.SoewPhongHomePageToolStripMenuItem.Text = "Soew Phong Web Site"
         '
         'PiggyJSonPageToolStripMenuItem
         '
         Me.PiggyJSonPageToolStripMenuItem.Name = "PiggyJSonPageToolStripMenuItem"
-        Me.PiggyJSonPageToolStripMenuItem.Size = New System.Drawing.Size(325, 24)
+        Me.PiggyJSonPageToolStripMenuItem.Size = New System.Drawing.Size(405, 34)
         Me.PiggyJSonPageToolStripMenuItem.Text = "Piggy JSon Online Documentation"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(322, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(402, 6)
         '
-        'ShowJSonToolStripMenuItem
+        'AboutToolStripMenuItem1
         '
-        Me.ShowJSonToolStripMenuItem.Name = "ShowJSonToolStripMenuItem"
-        Me.ShowJSonToolStripMenuItem.Size = New System.Drawing.Size(220, 24)
-        Me.ShowJSonToolStripMenuItem.Text = "Show JSon Value"
+        Me.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1"
+        Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(405, 34)
+        Me.AboutToolStripMenuItem1.Text = "About"
+        '
+        'AssembleDemoToolStripMenuItem
+        '
+        Me.AssembleDemoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SimpleElementsToolStripMenuItem})
+        Me.AssembleDemoToolStripMenuItem.Name = "AssembleDemoToolStripMenuItem"
+        Me.AssembleDemoToolStripMenuItem.Size = New System.Drawing.Size(278, 34)
+        Me.AssembleDemoToolStripMenuItem.Text = "Assemble Demo"
+        '
+        'SimpleElementsToolStripMenuItem
+        '
+        Me.SimpleElementsToolStripMenuItem.Name = "SimpleElementsToolStripMenuItem"
+        Me.SimpleElementsToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
+        Me.SimpleElementsToolStripMenuItem.Text = "Simple elements"
         '
         'frmPigJSonDemo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(884, 338)
+        Me.ClientSize = New System.Drawing.Size(994, 406)
         Me.Controls.Add(Me.tbMain)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -174,5 +191,6 @@ Partial Class frmPigJSonDemo
     Friend WithEvents PiggyJSonPageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ShowJSonToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-
+    Friend WithEvents AssembleDemoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SimpleElementsToolStripMenuItem As ToolStripMenuItem
 End Class
