@@ -103,7 +103,7 @@
                 '不指定 EleKey 则各元素按照数组元素排列。
                 With pjSiteInf
                     .Init()
-                    .AddEle("Android", True)
+                    .AddEle("", "Android", True)
                     .AddEle("", "Google search")
                     .AddEle("", "Google Maps")
                 End With
@@ -183,5 +183,9 @@
         strJSonKey = InputBox("JSonKey=", sender.ToString, strJSonKey)
         Me.tbMain.Text &= strJSonKey & "=" & pjParse.GetStrValue(strJSonKey) & vbCrLf
         If pjParse.LastErr <> "" Then Me.tbMain.Text &= strJSonKey & " error = " & pjParse.LastErr & vbCrLf
+    End Sub
+
+    Private Sub SimpleElementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SimpleElementsToolStripMenuItem.Click
+
     End Sub
 End Class
