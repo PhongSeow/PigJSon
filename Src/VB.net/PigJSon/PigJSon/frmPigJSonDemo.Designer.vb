@@ -27,13 +27,12 @@ Partial Class frmPigJSonDemo
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JSonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssembleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ArrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssembleDemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SimpleElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SimpleTextElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ParseToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowJSonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AssembleDemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SimpleElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SoewPhongHomePageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PiggyJSonPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -79,52 +78,46 @@ Partial Class frmPigJSonDemo
         '
         'JSonToolStripMenuItem
         '
-        Me.JSonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AssembleDemoToolStripMenuItem, Me.AssembleToolStripMenuItem, Me.ArrayToolStripMenuItem, Me.ToolStripMenuItem1, Me.ParseToolStripMenuItem1, Me.ShowJSonToolStripMenuItem})
+        Me.JSonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AssembleDemoToolStripMenuItem, Me.ToolStripMenuItem1, Me.ParseToolStripMenuItem1, Me.ShowJSonToolStripMenuItem})
         Me.JSonToolStripMenuItem.Name = "JSonToolStripMenuItem"
         Me.JSonToolStripMenuItem.Size = New System.Drawing.Size(57, 24)
         Me.JSonToolStripMenuItem.Text = "&JSon"
         '
-        'AssembleToolStripMenuItem
-        '
-        Me.AssembleToolStripMenuItem.Name = "AssembleToolStripMenuItem"
-        Me.AssembleToolStripMenuItem.Size = New System.Drawing.Size(234, 26)
-        Me.AssembleToolStripMenuItem.Text = "Assemble NotArray"
-        '
-        'ArrayToolStripMenuItem
-        '
-        Me.ArrayToolStripMenuItem.Name = "ArrayToolStripMenuItem"
-        Me.ArrayToolStripMenuItem.Size = New System.Drawing.Size(234, 26)
-        Me.ArrayToolStripMenuItem.Text = "Assemble Array"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(231, 6)
-        '
-        'ParseToolStripMenuItem1
-        '
-        Me.ParseToolStripMenuItem1.Name = "ParseToolStripMenuItem1"
-        Me.ParseToolStripMenuItem1.Size = New System.Drawing.Size(234, 26)
-        Me.ParseToolStripMenuItem1.Text = "Parse JSon"
-        '
-        'ShowJSonToolStripMenuItem
-        '
-        Me.ShowJSonToolStripMenuItem.Name = "ShowJSonToolStripMenuItem"
-        Me.ShowJSonToolStripMenuItem.Size = New System.Drawing.Size(234, 26)
-        Me.ShowJSonToolStripMenuItem.Text = "Show JSon Value"
-        '
         'AssembleDemoToolStripMenuItem
         '
-        Me.AssembleDemoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SimpleElementsToolStripMenuItem})
+        Me.AssembleDemoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SimpleElementsToolStripMenuItem, Me.SimpleTextElementsToolStripMenuItem})
         Me.AssembleDemoToolStripMenuItem.Name = "AssembleDemoToolStripMenuItem"
-        Me.AssembleDemoToolStripMenuItem.Size = New System.Drawing.Size(234, 26)
+        Me.AssembleDemoToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
         Me.AssembleDemoToolStripMenuItem.Text = "Assemble Demo"
         '
         'SimpleElementsToolStripMenuItem
         '
         Me.SimpleElementsToolStripMenuItem.Name = "SimpleElementsToolStripMenuItem"
-        Me.SimpleElementsToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
-        Me.SimpleElementsToolStripMenuItem.Text = "Simple elements"
+        Me.SimpleElementsToolStripMenuItem.Size = New System.Drawing.Size(357, 26)
+        Me.SimpleElementsToolStripMenuItem.Text = "Simple text elements"
+        '
+        'SimpleTextElementsToolStripMenuItem
+        '
+        Me.SimpleTextElementsToolStripMenuItem.Name = "SimpleTextElementsToolStripMenuItem"
+        Me.SimpleTextElementsToolStripMenuItem.Size = New System.Drawing.Size(357, 26)
+        Me.SimpleTextElementsToolStripMenuItem.Text = "Simple multiple data types elements"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(221, 6)
+        '
+        'ParseToolStripMenuItem1
+        '
+        Me.ParseToolStripMenuItem1.Name = "ParseToolStripMenuItem1"
+        Me.ParseToolStripMenuItem1.Size = New System.Drawing.Size(224, 26)
+        Me.ParseToolStripMenuItem1.Text = "Parse JSon"
+        '
+        'ShowJSonToolStripMenuItem
+        '
+        Me.ShowJSonToolStripMenuItem.Name = "ShowJSonToolStripMenuItem"
+        Me.ShowJSonToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
+        Me.ShowJSonToolStripMenuItem.Text = "Show JSon Value"
         '
         'AboutToolStripMenuItem
         '
@@ -181,9 +174,7 @@ Partial Class frmPigJSonDemo
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents JSonToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AssembleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ArrayToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ParseToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SoewPhongHomePageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -192,4 +183,5 @@ Partial Class frmPigJSonDemo
     Friend WithEvents ShowJSonToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AssembleDemoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SimpleElementsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SimpleTextElementsToolStripMenuItem As ToolStripMenuItem
 End Class

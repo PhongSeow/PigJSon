@@ -3,13 +3,14 @@
 '* Author: Seow Phong
 '* Describe: Simple JSON class, which can assemble and parse JSON definitions without components.
 '* Home Url: http://www.seowphong.com
-'* Version: 1.0.7
+'* Version: 1.0.8
 '* Create Time: 8/8/2019
 '* 1.0.2    8/10/2020   Code changed from VB6 to VB.NET
 '* 1.0.3    8/12/2020   Some Function debugging 
 '* 1.0.4    8/16/2020   mAddJSonStr debugging
 '* 1.0.5    8/18/2020   AddArrayEle debugging
 '* 1.0.6    8/18/2020   Add overloaded function AddArrayEle
+'* 1.0.7    9/18/2020   Fix AddEle bug 
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
@@ -203,6 +204,8 @@ Public Class PigJSon
         Try
             Dim lngDate As Long = Me.mDate2Lng(DateValue, True)
             If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
+            Dim strRet = Me.mAddEle(EleKey, lngDate.ToString, IsFirstEle, False)
+            If strRet <> "" Then Err.Raise(-1, , strRet)
             Me.mClearErr()
         Catch ex As Exception
             mstrLastErr = Me.mGetSubErrInf("AddEle.DateValue", "", ex)
