@@ -100,7 +100,8 @@
             With pjOneSite
                 .Init()
                 .AddEle("SiteName", "Google", True)
-                '不指定 EleKey 则各元素按照数组元素排列。
+                '不指定 EleKey 则各元素按照数组元素排列。
+
                 With pjSiteInf
                     .Init()
                     .AddEle("", "Android", True)
