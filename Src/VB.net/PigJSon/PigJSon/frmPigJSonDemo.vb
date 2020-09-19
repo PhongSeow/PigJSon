@@ -56,6 +56,7 @@
     '            .AddEle("SiteName", "Google", True)
     '            '不指定 EleKey 则各元素按照数组元素排列。
 
+
     '            With pjSiteInf
     '                .Init()
     '                .AddEle("", "Android", True)
@@ -221,4 +222,44 @@
         Me.tbMain.Text = strDisplay
     End Sub
 
+    Private Sub SimpleArrayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SimpleArrayToolStripMenuItem.Click
+        Dim strRet As String
+        Dim strDisplay As String = ""
+        strDisplay &= "***Sample code***" & vbCrLf
+        strDisplay &= "pjArray = New PigJSon" & vbCrLf
+        strDisplay &= "With pjArray" & vbCrLf
+        strDisplay &= vbTab & ".AddEle("""", ""Google"", True)" & vbCrLf
+        strDisplay &= vbTab & ".AddEle("""", ""GitHub"")" & vbCrLf
+        strDisplay &= vbTab & ".AddEle("""", ""Apache"")" & vbCrLf
+        strDisplay &= "End With" & vbCrLf
+        strDisplay &= "pjAssemble = New PigJSon" & vbCrLf
+        strDisplay &= "With pjAssemble" & vbCrLf
+        strDisplay &= vbTab & ".AddOneArrayEle(""Sites"", pjArray.MainJSonStr, True)" & vbCrLf
+        strDisplay &= vbTab & ".AddSymbol(PigJSon.xpSymbolType.EleEndFlag)" & vbCrLf
+        strDisplay &= "End With" & vbCrLf
+        Dim pjArray As PigJSon
+        pjArray = New PigJSon
+        With pjArray
+            .AddEle("", "Google", True)
+            .AddEle("", "GitHub")
+            .AddEle("", "Apache")
+        End With
+        pjAssemble = New PigJSon
+        With pjAssemble
+            .AddOneArrayEle("Sites", pjArray.MainJSonStr, True)
+            .AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+            strRet = .ParseJSON()
+            strDisplay &= "***Return results***" & vbCrLf
+            strDisplay &= "MainJSonStr=" & .MainJSonStr & vbCrLf
+            strDisplay &= "ParseJSON=" & strRet & vbCrLf
+            If strRet = "OK" Then
+                strDisplay &= "With pjAssemble" & vbCrLf
+                strDisplay &= vbTab & ".GetStrValue(""Sites[0]"")=" & .GetStrValue("Sites[0]") & vbCrLf
+                strDisplay &= vbTab & ".GetStrValue(""Sites[1]"")=" & .GetStrValue("Sites[1]") & vbCrLf
+                strDisplay &= vbTab & ".GetStrValue(""Sites[2]"")=" & .GetStrValue("Sites[2]") & vbCrLf
+                strDisplay &= "End With" & vbCrLf
+            End If
+        End With
+        Me.tbMain.Text = strDisplay
+    End Sub
 End Class

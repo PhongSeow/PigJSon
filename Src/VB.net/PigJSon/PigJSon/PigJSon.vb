@@ -11,6 +11,7 @@
 '* 1.0.5    8/18/2020   AddArrayEle debugging
 '* 1.0.6    8/18/2020   Add overloaded function AddArrayEle
 '* 1.0.7    9/18/2020   Fix AddEle bug 
+'* 1.0.7    9/18/2020   Fix AddArrayEle,mAddEle bug 
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
@@ -32,6 +33,8 @@ Public Class PigJSon
     Public Enum xpSymbolType
         ''' <summary>The end flag of the element</summary>
         EleEndFlag = 0
+        ''' <summary>The begin flag of the array</summary>
+        ArrayBeginFlag = 5
         ''' <summary>The end flag of the array</summary>
         ArrayEndFlag = 10
         ''' <summary>The separator for the array</summary>
@@ -158,17 +161,17 @@ Public Class PigJSon
         End Try
     End Sub
 
-    ''' <summary>Add a array element (boolean value)</summary>
-    ''' <param name="BoolValue">The boolean value of the element</param>
-    ''' <param name="IsFirstEle">Is it the first element</param>
-    Public Overloads Sub AddArrayEle(BoolValue As Boolean, Optional IsFirstEle As Boolean = False)
-        Try
-            Dim strRet = Me.mAddEle("", BoolValue.ToString, IsFirstEle, False)
-            If strRet <> "" Then Err.Raise(-1, , strRet)
-        Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEle.BoolValue", "", ex)
-        End Try
-    End Sub
+    '''' <summary>Add a array element (boolean value)</summary>
+    '''' <param name="BoolValue">The boolean value of the element</param>
+    '''' <param name="IsFirstEle">Is it the first element</param>
+    'Public Overloads Sub AddArrayEle(BoolValue As Boolean, Optional IsFirstEle As Boolean = False)
+    '    Try
+    '        Dim strRet = Me.mAddEle("", BoolValue.ToString, IsFirstEle, False)
+    '        If strRet <> "" Then Err.Raise(-1, , strRet)
+    '    Catch ex As Exception
+    '        mstrLastErr = Me.mGetSubErrInf("AddArrayEle.BoolValue", "", ex)
+    '    End Try
+    'End Sub
 
     ''' <summary>Add a non array element (boolean value)</summary>
     ''' <param name="EleKey">The key of the element, An empty string represents an array element without a key value.</param>
@@ -390,6 +393,8 @@ Public Class PigJSon
     Public Sub AddSymbol(SymbolType As xpSymbolType)
         Try
             Select Case SymbolType
+                Case xpSymbolType.ArrayBeginFlag
+                    msbMain.Append("[")
                 Case xpSymbolType.ArrayEndFlag
                     msbMain.Append("]")
                 Case xpSymbolType.ArraySeparator
@@ -415,7 +420,11 @@ Public Class PigJSon
         Try
             strStepName = "Add EleKey"
             If IsFirstEle = True Then
-                strRet = mAddJSonStr(msbMain, xpJSonEleType.FristEle, EleKey, "", False)
+                If EleKey <> "" Then
+                    strRet = mAddJSonStr(msbMain, xpJSonEleType.FristEle, EleKey, "", False)
+                Else
+                    strRet = "OK"
+                End If
             Else
                 strRet = mAddJSonStr(msbMain, xpJSonEleType.NotFristEle, EleKey, "", False)
             End If
@@ -445,6 +454,30 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             strStepName = "Add EleValue"
             strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", ArrayEleValue)
+            If strRet <> "OK" Then Err.Raise(-1, , strRet)
+            Me.mClearErr()
+        Catch ex As Exception
+            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+        End Try
+    End Sub
+
+    ''' <summary>Add one array JSON element</summary>
+    ''' <param name="EleKey">The key of the element</param>
+    ''' <param name="ArrayEleValue">The array string value of the element</param>
+    ''' <param name="IsFirstEle">Is it the first element</param>
+    Public Overloads Sub AddOneArrayEle(EleKey As String, ArrayEleValue As String, Optional IsFirstEle As Boolean = False)
+        Dim strStepName As String = "", strRet As String = ""
+        Try
+            strStepName = "Check EleKey"
+            If EleKey = "" Then Err.Raise(-1, , "Need EleKey")
+            If IsFirstEle = True Then
+                strRet = mAddJSonStr(msbMain, xpJSonEleType.FristEle, EleKey, "")
+            Else
+                strRet = mAddJSonStr(msbMain, xpJSonEleType.NotFristEle, EleKey, "")
+            End If
+            If strRet <> "OK" Then Err.Raise(-1, , strRet)
+            strStepName = "Add EleValue"
+            strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", "[" & ArrayEleValue & "]")
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             Me.mClearErr()
         Catch ex As Exception

@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' 查看程序集特性的值
 
-<Assembly: AssemblyTitle("Piggy JSon")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Seow Phong")> 
-<Assembly: AssemblyProduct("Piggy JSon Tools")> 
+<Assembly: AssemblyTitle("Piggy JSon")>
+<Assembly: AssemblyDescription("Piggy JSON is a very simple JSON parsing and assembly toolkit that can support VB.net And C#.")>
+<Assembly: AssemblyCompany("Seow Phong")>
+<Assembly: AssemblyProduct("Piggy JSon Demo")>
 <Assembly: AssemblyCopyright("Copyright © 2020 Seow Phong")> 
 <Assembly: AssemblyTrademark("")> 
 
