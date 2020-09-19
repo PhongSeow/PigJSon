@@ -11,7 +11,7 @@
 '* 1.0.5    8/18/2020   AddArrayEle debugging
 '* 1.0.6    8/18/2020   Add overloaded function AddArrayEle
 '* 1.0.7    9/18/2020   Fix AddEle bug 
-'* 1.0.7    9/18/2020   Fix AddArrayEle,mAddEle bug 
+'* 1.0.8    9/19/2020   Fix AddArrayEle,mAddEle bug and add AddOneArrayEle
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
