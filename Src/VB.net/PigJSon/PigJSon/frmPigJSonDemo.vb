@@ -26,7 +26,7 @@
     End Sub
 
 
-    Private Sub SoewPhongHomePageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SoewPhongHomePageToolStripMenuItem.Click
+    Private Sub SeowPhongHomePageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeowPhongHomePageToolStripMenuItem.Click
         System.Diagnostics.Process.Start("https://en.seowphong.com/")
     End Sub
 
@@ -37,8 +37,8 @@
     '    strDisplay &= "***Sample code***" & vbCrLf
     '    strDisplay &= "pjAssemble = New PigJSon" & vbCrLf
     '    strDisplay &= "With pjAssemble" & vbCrLf
-    '    strDisplay &= vbTab & ".AddEle(""SiteName"", ""Soew Phong Web Site"", True)    'The first element needs to be explicitly specified" & vbCrLf
-    '    strDisplay &= vbTab & ".AddEle(""SiteUrl"", ""http://www.sewophong.com"")  'The default is not the first element" & vbCrLf
+    '    strDisplay &= vbTab & ".AddEle(""SiteName"", ""Seow Phong Web Site"", True)    'The first element needs to be explicitly specified" & vbCrLf
+    '    strDisplay &= vbTab & ".AddEle(""SiteUrl"", ""http://www.seowphong.com"")  'The default is not the first element" & vbCrLf
     '    strDisplay &= vbTab & ".AddEle(""Describe"", ""A website for free software"" & vbCrLf & "" and shareware"") 'The text contains a carriage return" & vbCrLf
     '    strDisplay &= vbTab & ".AddEle(""Rank"", 168)" & vbCrLf
     '    strDisplay &= vbTab & ".AddEle(""VisitPerDay"", CDec(168.88))" & vbCrLf
@@ -54,7 +54,8 @@
     '        With pjOneSite
     '            .Init()
     '            .AddEle("SiteName", "Google", True)
-    '            '不指定 EleKey 则各元素按照数组元素排列。
+    '            '不指定 EleKey 则各元素按照数组元素排列。
+
 
 
     '            With pjSiteInf
@@ -103,8 +104,8 @@
     '        .AddArrayEle("Sites", pjSites.MainJSonStr)
     '    End With
     '    With pjAssemble
-    '        .AddEle("SiteName", "Soew Phong Web Site", True)
-    '        .AddEle("SiteUrl", "http://www.sewophong.com")
+    '        .AddEle("SiteName", "Seow Phong Web Site", True)
+    '        .AddEle("SiteUrl", "http://www.seowphong.com")
     '        .AddEle("Describe", "A website for free software" & vbCrLf & " and shareware")
     '        .AddEle("Rank", 168)
     '        .AddEle("VisitPerDay", CDec(168.88))
@@ -144,31 +145,33 @@
     Private Sub SimpleElementsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SimpleElementsToolStripMenuItem.Click
         Dim strRet As String
         Dim strDisplay As String = ""
-        strDisplay &= "***Sample code***" & vbCrLf
+        strDisplay &= "***" & sender.ToString & " Sample code***" & vbCrLf
         strDisplay &= "pjAssemble = New PigJSon" & vbCrLf
         strDisplay &= "With pjAssemble" & vbCrLf
-        strDisplay &= vbTab & ".AddEle(""SiteName"", ""Soew Phong Web Site"", True)    'The first element needs to be explicitly specified" & vbCrLf
-        strDisplay &= vbTab & ".AddEle(""SiteUrl"", ""http://www.sewophong.com"")  'The default is not the first element" & vbCrLf
+        strDisplay &= vbTab & ".AddEle(""SiteName"", ""Seow Phong Web Site"", True)    'The first element needs to be explicitly specified" & vbCrLf
+        strDisplay &= vbTab & ".AddEle(""SiteUrl"", ""http://www.seowphong.com"")  'The default is not the first element" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""Describe"", ""A website for free software"" & vbCrLf & "" and shareware"") 'The text contains a carriage return" & vbCrLf
         strDisplay &= vbTab & ".AddSymbol(PigJSon.xpSymbolType.EleEndFlag)" & vbCrLf
+        strDisplay &= vbTab & ".ParseJSON()" & vbCrLf
+        strDisplay &= vbTab & "Debug.Print(.MainJSonStr)" & vbCrLf
+        strDisplay &= vbTab & "Debug.Print(.GetStrValue(""SiteName""))" & vbCrLf
+        strDisplay &= vbTab & "Debug.Print(.GetStrValue(""SiteUrl""))" & vbCrLf
+        strDisplay &= vbTab & "Debug.Print(.GetStrValue(""Describe""))" & vbCrLf
         strDisplay &= "End With" & vbCrLf
 
         pjAssemble = New PigJSon
         With pjAssemble
-            .AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified
-            .AddEle("SiteUrl", "http://www.sewophong.com")  'The default is not the first element
+            .AddEle("SiteName", "Seow Phong Web Site", True)    'The first element needs to be explicitly specified
+            .AddEle("SiteUrl", "http://www.seowphong.com")  'The default is not the first element
             .AddEle("Describe", "A website for free software" & vbCrLf & " and shareware")  'The text contains a carriage return
             .AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
             strRet = .ParseJSON()
-            strDisplay &= "***Return results***" & vbCrLf
-            strDisplay &= "MainJSonStr=" & .MainJSonStr & vbCrLf
-            strDisplay &= "ParseJSON=" & strRet & vbCrLf
             If strRet = "OK" Then
-                strDisplay &= "With pjAssemble" & vbCrLf
-                strDisplay &= vbTab & ".GetStrValue(""SiteName"")=" & .GetStrValue("SiteName") & vbCrLf
-                strDisplay &= vbTab & ".GetStrValue(""SiteUrl"")=" & .GetStrValue("SiteUrl") & vbCrLf
-                strDisplay &= vbTab & ".GetStrValue(""Describe"")=" & .GetStrValue("Describe") & vbCrLf
-                strDisplay &= "End With" & vbCrLf
+                strDisplay &= "***Return results***" & vbCrLf
+                strDisplay &= .MainJSonStr & vbCrLf
+                strDisplay &= .GetStrValue("SiteName") & vbCrLf
+                strDisplay &= .GetStrValue("SiteUrl") & vbCrLf
+                strDisplay &= .GetStrValue("Describe") & vbCrLf
             End If
         End With
         Me.tbMain.Text = strDisplay
@@ -180,8 +183,8 @@
         strDisplay &= "***Sample code***" & vbCrLf
         strDisplay &= "pjAssemble = New PigJSon" & vbCrLf
         strDisplay &= "With pjAssemble" & vbCrLf
-        strDisplay &= vbTab & ".AddEle(""SiteName"", ""Soew Phong Web Site"", True)    'The first element needs to be explicitly specified" & vbCrLf
-        strDisplay &= vbTab & ".AddEle(""SiteUrl"", ""http://www.sewophong.com"")  'The default is not the first element" & vbCrLf
+        strDisplay &= vbTab & ".AddEle(""SiteName"", ""Seow Phong Web Site"", True)    'The first element needs to be explicitly specified" & vbCrLf
+        strDisplay &= vbTab & ".AddEle(""SiteUrl"", ""http://www.seowphong.com"")  'The default is not the first element" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""Describe"", ""A website for free software"" & vbCrLf & "" and shareware"") 'The text contains a carriage return" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""Rank"", 168)" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""VisitPerDay"", CDec(168.88))" & vbCrLf
@@ -193,8 +196,8 @@
 
         pjAssemble = New PigJSon
         With pjAssemble
-            .AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified
-            .AddEle("SiteUrl", "http://www.sewophong.com")  'The default is not the first element
+            .AddEle("SiteName", "Seow Phong Web Site", True)    'The first element needs to be explicitly specified
+            .AddEle("SiteUrl", "http://www.seowphong.com")  'The default is not the first element
             .AddEle("Describe", "A website for free software" & vbCrLf & " and shareware")  'The text contains a carriage return
             .AddEle("Rank", 168)
             .AddEle("VisitPerDay", CDec(168.88))

@@ -34,7 +34,7 @@ Partial Class frmPigJSonDemo
         Me.ParseToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowJSonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SoewPhongHomePageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeowPhongHomePageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PiggyJSonPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -123,16 +123,16 @@ Partial Class frmPigJSonDemo
         '
         'AboutToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SoewPhongHomePageToolStripMenuItem, Me.PiggyJSonPageToolStripMenuItem, Me.ToolStripMenuItem2, Me.AboutToolStripMenuItem1})
+        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SeowPhongHomePageToolStripMenuItem, Me.PiggyJSonPageToolStripMenuItem, Me.ToolStripMenuItem2, Me.AboutToolStripMenuItem1})
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(67, 28)
         Me.AboutToolStripMenuItem.Text = "&Help"
         '
-        'SoewPhongHomePageToolStripMenuItem
+        'SeowPhongHomePageToolStripMenuItem
         '
-        Me.SoewPhongHomePageToolStripMenuItem.Name = "SoewPhongHomePageToolStripMenuItem"
-        Me.SoewPhongHomePageToolStripMenuItem.Size = New System.Drawing.Size(405, 34)
-        Me.SoewPhongHomePageToolStripMenuItem.Text = "Soew Phong Web Site"
+        Me.SeowPhongHomePageToolStripMenuItem.Name = "SeowPhongHomePageToolStripMenuItem"
+        Me.SeowPhongHomePageToolStripMenuItem.Size = New System.Drawing.Size(405, 34)
+        Me.SeowPhongHomePageToolStripMenuItem.Text = "Seow Phong Web Site"
         '
         'PiggyJSonPageToolStripMenuItem
         '
@@ -185,7 +185,7 @@ Partial Class frmPigJSonDemo
     Friend WithEvents AboutToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ParseToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SoewPhongHomePageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeowPhongHomePageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PiggyJSonPageToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ShowJSonToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
