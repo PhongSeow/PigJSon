@@ -15,7 +15,7 @@ Bin
 
 Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET Or C# project.
 
-
+<p>
 ***Simple text elements Sample code***
 pjAssemble = New PigJSon
 With pjAssemble
@@ -33,6 +33,7 @@ With pjAssemble
 	.GetStrValue("Describe")=A website for free software
  and shareware
 End With
+</p>
 
 ***Simple multiple data types elements Sample code***
 pjAssemble = New PigJSon
