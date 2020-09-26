@@ -20,10 +20,10 @@ Execute code directory, if you don't want to see the source program, you can use
 
 pjAssemble = New PigJSon<br>
 With pjAssemble<br>
-    .AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified<br>
-    .AddEle("SiteUrl", "http://www.sewophong.com")  'The default is not the first element<br>
-    .AddEle("Describe", "A website for free software" & vbCrLf & " and shareware") 'The text contains a carriage return<br>
-    .AddSymbol(PigJSon.xpSymbolType.EleEndFlag)<br>
+&nbsp&nbsp&nbsp&nbsp.AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified<br>
+&nbsp&nbsp&nbsp&nbsp.AddEle("SiteUrl", "http://www.sewophong.com")  'The default is not the first element<br>
+&nbsp&nbsp&nbsp&nbsp.AddEle("Describe", "A website for free software" & vbCrLf & " and shareware") 'The text contains a carriage return<br>
+&nbsp&nbsp&nbsp&nbsp.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)<br>
 End With<br>
 
 ***Return results***
@@ -42,7 +42,7 @@ End With
 
 pjAssemble = New PigJSon
 With pjAssemble
-	.AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified
+&nbsp&nbsp&nbsp&nbsp.AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified
 	.AddEle("SiteUrl", "http://www.sewophong.com")  'The default is not the first element
 	.AddEle("Describe", "A website for free software" & vbCrLf & " and shareware") 'The text contains a carriage return
 	.AddEle("Rank", 168)
