@@ -17,7 +17,7 @@ Execute code directory, if you don't want to see the source program, you can use
 
 <p>
 ***Simple text elements Sample code***
-pjAssemble = New PigJSon
+pjAssemble = New PigJSon<br>
 With pjAssemble
 	.AddEle("SiteName", "Soew Phong Web Site", True)    'The first element needs to be explicitly specified
 	.AddEle("SiteUrl", "http://www.sewophong.com")  'The default is not the first element
