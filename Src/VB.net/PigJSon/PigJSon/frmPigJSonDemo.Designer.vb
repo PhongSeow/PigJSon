@@ -30,6 +30,7 @@ Partial Class frmPigJSonDemo
         Me.AssembleDemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SimpleElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SimpleTextElementsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SimpleArrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ParseToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowJSonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,7 +39,6 @@ Partial Class frmPigJSonDemo
         Me.PiggyJSonPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SimpleArrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,7 +60,6 @@ Partial Class frmPigJSonDemo
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.JSonToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 2, 0, 2)
         Me.MenuStrip1.Size = New System.Drawing.Size(994, 32)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
@@ -103,6 +102,12 @@ Partial Class frmPigJSonDemo
         Me.SimpleTextElementsToolStripMenuItem.Name = "SimpleTextElementsToolStripMenuItem"
         Me.SimpleTextElementsToolStripMenuItem.Size = New System.Drawing.Size(425, 34)
         Me.SimpleTextElementsToolStripMenuItem.Text = "Simple multiple data types elements"
+        '
+        'SimpleArrayToolStripMenuItem
+        '
+        Me.SimpleArrayToolStripMenuItem.Name = "SimpleArrayToolStripMenuItem"
+        Me.SimpleArrayToolStripMenuItem.Size = New System.Drawing.Size(425, 34)
+        Me.SimpleArrayToolStripMenuItem.Text = "Simple array"
         '
         'ToolStripMenuItem1
         '
@@ -150,12 +155,6 @@ Partial Class frmPigJSonDemo
         Me.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1"
         Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(405, 34)
         Me.AboutToolStripMenuItem1.Text = "About"
-        '
-        'SimpleArrayToolStripMenuItem
-        '
-        Me.SimpleArrayToolStripMenuItem.Name = "SimpleArrayToolStripMenuItem"
-        Me.SimpleArrayToolStripMenuItem.Size = New System.Drawing.Size(425, 34)
-        Me.SimpleArrayToolStripMenuItem.Text = "Simple array"
         '
         'frmPigJSonDemo
         '

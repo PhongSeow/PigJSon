@@ -10,7 +10,23 @@
 
     Private Sub ParseToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ParseToolStripMenuItem1.Click
         If Len(Me.tbMain.Text) = 0 Then
-            MsgBox("Please enter the JSON string in the text box", MsgBoxStyle.Exclamation, sender.ToString)
+            Me.tbMain.Text = "{""SayInf"":""Hello World""}"
+            Dim strDisplay As String = ""
+            strDisplay &= vbCrLf & "***" & sender.ToString & " Sample code***" & vbCrLf
+            strDisplay &= "```" & vbCrLf
+            strDisplay &= "pjParse = New PigJSon(""{""""SayInf"""":""""Hello World""""}"")" & vbCrLf
+            strDisplay &= "If pjParse.LastErr <> """" Then" & vbCrLf
+            strDisplay &= vbTab & "Debug.Print(pjParse.GetStrValue(""SayInf""))" & vbCrLf
+            strDisplay &= "End If" & vbCrLf
+            strDisplay &= "```" & vbCrLf
+            pjParse = New PigJSon(Me.tbMain.Text)
+            If pjParse.LastErr = "" Then
+                strDisplay &= vbCrLf & "***Return results***" & vbCrLf
+                strDisplay &= "```" & vbCrLf
+                strDisplay &= pjParse.GetStrValue("SayInf") & vbCrLf
+                strDisplay &= "```" & vbCrLf
+                Me.tbMain.Text &= strDisplay
+            End If
         Else
             pjParse = New PigJSon(Me.tbMain.Text)
             If pjParse.LastErr <> "" Then
@@ -283,5 +299,9 @@
             End If
         End With
         Me.tbMain.Text = strDisplay
+    End Sub
+
+    Private Sub AssembleDemoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssembleDemoToolStripMenuItem.Click
+
     End Sub
 End Class
