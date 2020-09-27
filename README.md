@@ -19,7 +19,7 @@ Execute code directory, if you don't want to see the source program, you can use
 
 ```
 pjParse = New PigJSon("{""SayInf"":""Hello World""}")
-If pjParse.LastErr <> "" Then
+If pjParse.LastErr = "" Then
 	Debug.Print(pjParse.GetStrValue("SayInf"))
 End If
 ```
