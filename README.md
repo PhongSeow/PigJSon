@@ -15,6 +15,7 @@ Bin
 
 Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET Or C# project.
 
+
 ***Simple text elements Sample code***
 ```
 pjAssemble = New PigJSon
@@ -23,17 +24,24 @@ With pjAssemble
 	.AddEle("SiteUrl", "http://www.seowphong.com")  'The default is not the first element
 	.AddEle("Describe", "A website for free software" & vbCrLf & " and shareware") 'The text contains a carriage return
 	.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
-	.ParseJSON()
-	Debug.Print(.MainJSonStr)
-	Debug.Print(.GetStrValue("SiteName"))
-	Debug.Print(.GetStrValue("SiteUrl"))
-	Debug.Print(.GetStrValue("Describe"))
+	If .ParseJSON() = "OK"
+		Debug.Print(.MainJSonStr)
+		Debug.Print(.GetStrValue("SiteName"))
+		Debug.Print(.GetStrValue("SiteUrl"))
+		Debug.Print(.GetStrValue("Describe"))
+	End If
 End With
 ```
 
 ***Return results***
+
 `{"SiteName":"Seow Phong Web Site","SiteUrl":"http://www.seowphong.com","Describe":"A website for free software\r\n and shareware"}`
+
 `Seow Phong Web Site`
+
 `http://www.seowphong.com`
+
 `A website for free software
  and shareware`
+
+
