@@ -15,8 +15,23 @@ VB.net Example, in VB.net In the project, we only need to add PigJSon.vb This cl
 
 Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET Or C# project.
 
-***Simple text elements Sample code***
+***Parse JSon Sample code***
+
 ```
+pjParse = New PigJSon("{""SayInf"":""Hello World""}")
+If pjParse.LastErr <> "" Then
+	Debug.Print(pjParse.GetStrValue("SayInf"))
+End If
+```
+
+***Return results***
+```
+Hello World
+```
+
+***Simple text elements Sample code***
+
+```visual basic
 pjAssemble = New PigJSon
 With pjAssemble
 	.AddEle("SiteName", "Seow Phong Web Site", True)    'The first element needs to be explicitly specified
