@@ -15,22 +15,25 @@ Bin
 
 Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET Or C# project.
 
-***Simple text elements Sample code***<br>
-pjAssemble = New PigJSon<br>
-With pjAssemble<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.AddEle("SiteName", "Seow Phong Web Site", True)    'The first element needs to be explicitly specified<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.AddEle("SiteUrl", "http://www.seowphong.com")  'The default is not the first element<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.AddEle("Describe", "A website for free software" & vbCrLf & " and shareware") 'The text contains a carriage return<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;.ParseJSON()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Debug.Print(.MainJSonStr)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Debug.Print(.GetStrValue("SiteName"))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Debug.Print(.GetStrValue("SiteUrl"))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Debug.Print(.GetStrValue("Describe"))<br>
-End With<br>
-***Return results***<br>
-{"SiteName":"Seow Phong Web Site","SiteUrl":"http://www.seowphong.com","Describe":"A website for free software\r\n and shareware"}<br>
-Seow Phong Web Site<br>
-http://www.seowphong.com<br>
-A website for free software<br>
- and shareware<br>
+***Simple text elements Sample code***
+```
+pjAssemble = New PigJSon
+With pjAssemble
+	.AddEle("SiteName", "Seow Phong Web Site", True)    'The first element needs to be explicitly specified
+	.AddEle("SiteUrl", "http://www.seowphong.com")  'The default is not the first element
+	.AddEle("Describe", "A website for free software" & vbCrLf & " and shareware") 'The text contains a carriage return
+	.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+	.ParseJSON()
+	Debug.Print(.MainJSonStr)
+	Debug.Print(.GetStrValue("SiteName"))
+	Debug.Print(.GetStrValue("SiteUrl"))
+	Debug.Print(.GetStrValue("Describe"))
+End With
+```
+
+***Return results***
+`{"SiteName":"Seow Phong Web Site","SiteUrl":"http://www.seowphong.com","Describe":"A website for free software\r\n and shareware"}`
+`Seow Phong Web Site`
+`http://www.seowphong.com`
+`A website for free software
+ and shareware`
