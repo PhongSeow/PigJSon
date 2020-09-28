@@ -97,3 +97,35 @@ A website for free software
 2020/9/27 21:33:32
 2020/9/27 13:33:32
 ```
+
+***Simple array elements Sample code***
+```
+pjArray = New PigJSon
+With pjArray
+	.AddEle("", "Google", True)
+	.AddEle("", "GitHub")
+	.AddEle("", "Apache")
+End With
+pjAssemble = New PigJSon
+With pjAssemble
+	.AddEle("TotalSites", 3, True)
+	.AddOneArrayEle("Sites", pjArray.MainJSonStr)
+	.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+	If .ParseJSON() = "OK" Then
+		Debug.Print(.MainJSonStr)
+		Debug.Print(.GetIntValue("TotalSites").ToString)
+		Debug.Print(.GetStrValue("SitesList[0]"))
+		Debug.Print(.GetStrValue("SitesList[1]"))
+		Debug.Print(.GetStrValue("SitesList[2]"))
+	End If
+End With
+```
+
+***Return results***
+```
+{"TotalSites":"3","SitesList":["Google","GitHub","Apache"]}
+3
+Google
+GitHub
+Apache
+```
