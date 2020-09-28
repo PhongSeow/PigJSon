@@ -109,7 +109,7 @@ End With
 pjAssemble = New PigJSon
 With pjAssemble
 	.AddEle("TotalSites", 3, True)
-	.AddOneArrayEle("Sites", pjArray.MainJSonStr)
+	.AddOneArrayEle("SitesList", pjArray.MainJSonStr)
 	.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
 	If .ParseJSON() = "OK" Then
 		Debug.Print(.MainJSonStr)
