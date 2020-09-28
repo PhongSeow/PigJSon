@@ -275,7 +275,7 @@
         strDisplay &= "pjAssemble = New PigJSon" & vbCrLf
         strDisplay &= "With pjAssemble" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""TotalSites"", 3, True)" & vbCrLf
-        strDisplay &= vbTab & ".AddOneArrayEle(""Sites"", pjArray.MainJSonStr)" & vbCrLf
+        strDisplay &= vbTab & ".AddOneArrayEle(""SitesList"", pjArray.MainJSonStr)" & vbCrLf
         strDisplay &= vbTab & ".AddSymbol(PigJSon.xpSymbolType.EleEndFlag)" & vbCrLf
         strDisplay &= vbTab & "If .ParseJSON() = ""OK"" Then" & vbCrLf
         strDisplay &= vbTab & vbTab & "Debug.Print(.MainJSonStr)" & vbCrLf
