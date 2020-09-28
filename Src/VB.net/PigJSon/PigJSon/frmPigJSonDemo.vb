@@ -76,6 +76,7 @@
 
 
 
+
     '            With pjSiteInf
     '                .Init()
     '                .AddEle("", "Android", True)
@@ -263,7 +264,8 @@
     Private Sub SimpleArrayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SimpleArrayToolStripMenuItem.Click
         Dim strRet As String
         Dim strDisplay As String = ""
-        strDisplay &= "***Sample code***" & vbCrLf
+        strDisplay &= vbCrLf & "***" & sender.ToString & " Sample code***" & vbCrLf
+        strDisplay &= "```" & vbCrLf
         strDisplay &= "pjArray = New PigJSon" & vbCrLf
         strDisplay &= "With pjArray" & vbCrLf
         strDisplay &= vbTab & ".AddEle("""", ""Google"", True)" & vbCrLf
@@ -272,9 +274,19 @@
         strDisplay &= "End With" & vbCrLf
         strDisplay &= "pjAssemble = New PigJSon" & vbCrLf
         strDisplay &= "With pjAssemble" & vbCrLf
-        strDisplay &= vbTab & ".AddOneArrayEle(""Sites"", pjArray.MainJSonStr, True)" & vbCrLf
+        strDisplay &= vbTab & ".AddEle(""TotalSites"", 3, True)" & vbCrLf
+        strDisplay &= vbTab & ".AddOneArrayEle(""Sites"", pjArray.MainJSonStr)" & vbCrLf
         strDisplay &= vbTab & ".AddSymbol(PigJSon.xpSymbolType.EleEndFlag)" & vbCrLf
+        strDisplay &= vbTab & "If .ParseJSON() = ""OK"" Then" & vbCrLf
+        strDisplay &= vbTab & vbTab & "Debug.Print(.MainJSonStr)" & vbCrLf
+        strDisplay &= vbTab & vbTab & "Debug.Print(.GetIntValue(""TotalSites"").ToString)" & vbCrLf
+        strDisplay &= vbTab & vbTab & "Debug.Print(.GetStrValue(""SitesList[0]""))" & vbCrLf
+        strDisplay &= vbTab & vbTab & "Debug.Print(.GetStrValue(""SitesList[1]""))" & vbCrLf
+        strDisplay &= vbTab & vbTab & "Debug.Print(.GetStrValue(""SitesList[2]""))" & vbCrLf
+        strDisplay &= vbTab & "End If" & vbCrLf
         strDisplay &= "End With" & vbCrLf
+        strDisplay &= "```" & vbCrLf
+
         Dim pjArray As PigJSon
         pjArray = New PigJSon
         With pjArray
@@ -284,24 +296,22 @@
         End With
         pjAssemble = New PigJSon
         With pjAssemble
-            .AddOneArrayEle("Sites", pjArray.MainJSonStr, True)
+            .AddEle("TotalSites", 3, True)
+            .AddOneArrayEle("SitesList", pjArray.MainJSonStr)
             .AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
-            strRet = .ParseJSON()
-            strDisplay &= "***Return results***" & vbCrLf
-            strDisplay &= "MainJSonStr=" & .MainJSonStr & vbCrLf
-            strDisplay &= "ParseJSON=" & strRet & vbCrLf
-            If strRet = "OK" Then
-                strDisplay &= "With pjAssemble" & vbCrLf
-                strDisplay &= vbTab & ".GetStrValue(""Sites[0]"")=" & .GetStrValue("Sites[0]") & vbCrLf
-                strDisplay &= vbTab & ".GetStrValue(""Sites[1]"")=" & .GetStrValue("Sites[1]") & vbCrLf
-                strDisplay &= vbTab & ".GetStrValue(""Sites[2]"")=" & .GetStrValue("Sites[2]") & vbCrLf
-                strDisplay &= "End With" & vbCrLf
+            If .ParseJSON() = "OK" Then
+                strDisplay &= vbCrLf & "***Return results***" & vbCrLf
+                strDisplay &= "```" & vbCrLf
+                strDisplay &= .MainJSonStr & vbCrLf
+                strDisplay &= .GetIntValue("TotalSites").ToString & vbCrLf
+                strDisplay &= .GetStrValue("SitesList[0]") & vbCrLf
+                strDisplay &= .GetStrValue("SitesList[1]") & vbCrLf
+                strDisplay &= .GetStrValue("SitesList[2]") & vbCrLf
+                strDisplay &= "```" & vbCrLf
             End If
         End With
         Me.tbMain.Text = strDisplay
     End Sub
 
-    Private Sub AssembleDemoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AssembleDemoToolStripMenuItem.Click
 
-    End Sub
 End Class
