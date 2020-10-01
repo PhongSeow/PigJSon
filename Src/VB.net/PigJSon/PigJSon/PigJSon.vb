@@ -12,6 +12,7 @@
 '* 1.0.6    8/18/2020   Add overloaded function AddArrayEle
 '* 1.0.7    9/18/2020   Fix AddEle bug 
 '* 1.0.8    9/19/2020   Fix AddArrayEle,mAddEle bug and add AddOneArrayEle
+'* 1.0.9    10/1/2020   Fix AddArrayEleValue,add AddArrayEleBegin
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
@@ -33,12 +34,12 @@ Public Class PigJSon
     Public Enum xpSymbolType
         ''' <summary>The end flag of the element</summary>
         EleEndFlag = 0
-        ''' <summary>The begin flag of the array</summary>
-        ArrayBeginFlag = 5
+        '''' <summary>The begin flag of the array</summary>
+        'ArrayBeginFlag = 5
         ''' <summary>The end flag of the array</summary>
         ArrayEndFlag = 10
-        ''' <summary>The separator for the array</summary>
-        ArraySeparator = 20
+        '''' <summary>The separator for the array</summary>
+        'ArraySeparator = 20
     End Enum
 
     Private mbolIsParse As Boolean
@@ -393,12 +394,12 @@ Public Class PigJSon
     Public Sub AddSymbol(SymbolType As xpSymbolType)
         Try
             Select Case SymbolType
-                Case xpSymbolType.ArrayBeginFlag
-                    msbMain.Append("[")
+                'Case xpSymbolType.ArrayBeginFlag
+                '    msbMain.Append("[")
                 Case xpSymbolType.ArrayEndFlag
                     msbMain.Append("]")
-                Case xpSymbolType.ArraySeparator
-                    msbMain.Append(",")
+                'Case xpSymbolType.ArraySeparator
+                '    msbMain.Append(",")
                 Case xpSymbolType.EleEndFlag
                     msbMain.Append("}")
                 Case Else
@@ -438,26 +439,56 @@ Public Class PigJSon
         End Try
     End Function
 
-    ''' <summary>Add a array JSON element</summary>
+    ''' <summary>Add a array JSON element begin</summary>
     ''' <param name="EleKey">The key of the element</param>
-    ''' <param name="ArrayEleValue">The array string value of the element</param>
     ''' <param name="IsFirstEle">Is it the first element</param>
-    Public Overloads Sub AddArrayEle(EleKey As String, ArrayEleValue As String, IsFirstEle As Boolean)
+    Public Overloads Sub AddArrayEleBegin(EleKey As String, IsFirstEle As Boolean)
         Dim strStepName As String = "", strRet As String = ""
         Try
-            strStepName = "Add EleKey"
-            If IsFirstEle = True Then
-                strRet = mAddJSonStr(msbMain, xpJSonEleType.FristArrayEle, EleKey, "")
-            Else
-                strRet = mAddJSonStr(msbMain, xpJSonEleType.NotFristEle, EleKey, "")
-            End If
-            If strRet <> "OK" Then Err.Raise(-1, , strRet)
+            mSrc2JSonStr(EleKey)
+            With msbMain
+                If IsFirstEle = False Then .Append(",")
+                .Append("""")
+                .Append(EleKey)
+                .Append(""":[")
+            End With
+            Me.mClearErr()
+        Catch ex As Exception
+            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+        End Try
+    End Sub
+
+    ''' <summary>Add a array JSON element begin</summary>
+    ''' <param name="EleKey">The key of the element</param>
+    Public Overloads Sub AddArrayEleBegin(EleKey As String)
+        Dim strStepName As String = "", strRet As String = ""
+        Try
+            mSrc2JSonStr(EleKey)
+            With msbMain
+                .Append(",")
+                .Append("""")
+                .Append(EleKey)
+                .Append(""":[")
+            End With
+            Me.mClearErr()
+        Catch ex As Exception
+            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+        End Try
+    End Sub
+
+    ''' <summary>Add a array JSON element</summary>
+    ''' <param name="ArrayEleValue">The array string value of the element</param>
+    ''' <param name="IsFirstEle">Is it the first element</param>
+    Public Overloads Sub AddArrayEleValue(ArrayEleValue As String, IsFirstEle As Boolean)
+        Dim strStepName As String = "", strRet As String = ""
+        Try
+            If IsFirstEle = False Then msbMain.Append(",")
             strStepName = "Add EleValue"
             strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", ArrayEleValue)
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             Me.mClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+            mstrLastErr = Me.mGetSubErrInf("AddArrayEleValue", strStepName, ex)
         End Try
     End Sub
 
@@ -481,28 +512,23 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             Me.mClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+            mstrLastErr = Me.mGetSubErrInf("AddArrayEleValue", strStepName, ex)
         End Try
     End Sub
 
 
     ''' <summary>Add a array JSON element</summary>
-    ''' <param name="EleKey">The key of the element</param>
     ''' <param name="ArrayEleValue">The array string value of the element</param>
-    Public Overloads Sub AddArrayEle(EleKey As String, ArrayEleValue As String)
+    Public Overloads Sub AddArrayEleValue(ArrayEleValue As String)
         Dim strStepName As String = "", strRet As String = ""
         Try
-            strStepName = "Check EleKey"
-            If EleKey = "" Then Err.Raise(-1, , "Need EleKey")
-            strStepName = "Add EleKey"
-            strRet = mAddJSonStr(msbMain, xpJSonEleType.NotFristEle, EleKey, "")
-            If strRet <> "OK" Then Err.Raise(-1, , strRet)
+            msbMain.Append(",")
             strStepName = "Add EleValue"
             strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", ArrayEleValue)
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             Me.mClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+            mstrLastErr = Me.mGetSubErrInf("AddArrayEleValue", strStepName, ex)
         End Try
     End Sub
 
@@ -510,9 +536,8 @@ Public Class PigJSon
         If mstrLastErr <> "" Then mstrLastErr = ""
     End Sub
 
-    ''' <summary>Initialize so that JSON can be assembled.</summary>
-    Public Sub Init()
-        '初始化内部JSON
+    ''' <summary>Reset so that JSON can be assembled.</summary>
+    Public Sub Reset()
         Try
             If Not msbMain Is Nothing Then msbMain = Nothing
             msbMain = New System.Text.StringBuilder("")
@@ -618,7 +643,7 @@ Public Class PigJSon
 
 
     Public Sub New()
-        Me.Init()
+        Me.Reset()
     End Sub
 
     Public Sub New(JSonStr As String)
