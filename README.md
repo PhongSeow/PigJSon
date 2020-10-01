@@ -56,7 +56,6 @@ A website for free software
  and shareware
 ```
 
-
 ***Simple multiple data types elements Sample code***
 ```
 pjAssemble = New PigJSon
@@ -102,6 +101,7 @@ A website for free software
 ```
 pjArray = New PigJSon
 With pjArray
+	'In this way, the content of the array element will be escaped.
 	.AddEle("", "Google", True)
 	.AddEle("", "GitHub")
 	.AddEle("", "Apache")
@@ -128,4 +128,78 @@ End With
 Google
 GitHub
 Apache
+```
+
+***Return results***
+```
+{"TotalSites":"3","SitesList":["Google","GitHub","Apache"]}
+3
+Google
+GitHub
+Apache
+```
+
+***complex array elements Sample code***
+```
+pjOneCompany = New PigJSon
+pjArray = New PigJSon
+pjAssemble = New PigJSon
+With pjAssemble
+	.AddEle("Name", "Company products", True)
+	.AddArrayEleBegin("CompanyProductList")
+	With pjArray
+		.Reset()
+		.AddEle("", "Windows", True)
+		.AddEle("", "SQL Server")
+		.AddEle("", "Office")
+		.AddEle("", "Azure")
+	End With
+	With pjOneCompany
+		.Reset()
+		.AddOneArrayEle("ProductList", pjArray.MainJSonStr, True)
+		.AddEle("CompanyName", "Microsoft")
+		.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+	End With
+	.AddArrayEleValue(pjOneCompany.MainJSonStr, True)
+	With pjArray
+		.Reset()
+		.AddEle("", "Chrome", True)
+		.AddEle("", "YouTube")
+		.AddEle("", "Android")
+	End With
+	With pjOneCompany
+		.Reset()
+		.AddEle("CompanyName", "Google", True)
+		.AddOneArrayEle("ProductList", pjArray.MainJSonStr)
+		.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+	End With
+	.AddArrayEleValue(pjOneCompany.MainJSonStr)
+	.AddSymbol(PigJSon.xpSymbolType.ArrayEndFlag)
+	.AddEle("TotalCompanies", 2)
+	.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+	If .ParseJSON() = "OK" Then
+		Debug.Print(.MainJSonStr)
+		Debug.Print(.GetStrValue("Name"))
+		Debug.Print(.GetIntValue("TotalCompanies").ToString)
+		Debug.Print(.GetStrValue("CompanyProductList[0].CompanyName"))
+		Debug.Print(.GetStrValue("CompanyProductList[0].ProductList[2]"))
+		Debug.Print(.GetStrValue("CompanyProductList[0].ProductList[3]"))
+		Debug.Print(.GetStrValue("CompanyProductList[1].CompanyName"))
+		Debug.Print(.GetStrValue("CompanyProductList[1].ProductList[1]"))
+		Debug.Print(.GetStrValue("CompanyProductList[1].ProductList[2]"))
+	End If
+End With
+```
+
+***Return results***
+```
+{"Name":"Company products","CompanyProductList":[{"ProductList":["Windows","SQL Server","Office","Azure"],"CompanyName":"Microsoft"},{"CompanyName":"Google","ProductList":["Chrome","YouTube","Android"]}],"TotalCompanies":"2"}
+Company products
+2
+Microsoft
+Office
+Azure
+Google
+YouTube
+Android
 ```
