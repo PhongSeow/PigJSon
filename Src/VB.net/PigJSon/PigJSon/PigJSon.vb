@@ -3,7 +3,7 @@
 '* Author: Seow Phong
 '* Describe: Simple JSON class, which can assemble and parse JSON definitions without components.
 '* Home Url: http://www.seowphong.com
-'* Version: 1.0.8
+'* Version: 1.0.9
 '* Create Time: 8/8/2019
 '* 1.0.2    8/10/2020   Code changed from VB6 to VB.NET
 '* 1.0.3    8/12/2020   Some Function debugging 
