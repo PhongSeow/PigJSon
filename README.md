@@ -35,9 +35,30 @@ PigJSon VB.net Version of the source code.
 
 The source code uses. Net framework 4.5.
 
+***Sample code***
+
+```
+pjParse = New PigJSon("{""SayInf"":""Hello World""}")
+If pjParse.LastErr = "" Then
+	Debug.Print(pjParse.GetStrValue("SayInf"))
+End If
+```
+
+***[See more sample code...](https://github.com/PhongSeow/PigJSon/blob/master/Run/VB.net/Sample.md)***
+
 ##### Src\VB.net\PigJSon\PigJSon.sln
 
-Open the SLN file to view and debug the source code of pigjson.
+Open the SLN file to view and debug the source code of PigJSon.
+
+##### Src\VB.net\PigJSon\PigJSon\PigJSon.vb
+
+Main class, all functions are in it.
+
+##### Src\VB.net\PigJSon\PigJSon\frmPigJSonDemo.vb
+
+Sample code form.
+
+
 
 
 
