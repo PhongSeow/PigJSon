@@ -21,7 +21,7 @@ The execution effect of the sample code.
 
 ##### [Run\VB.net\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Run/VB.net/Sample.md)
 
-Sample code for how to use the pigjson class.
+Sample code for how to use the PigJSon class.
 
 ## 
 
@@ -31,7 +31,7 @@ Source code directory.
 
 #### Src\VB.net
 
-VB.net Example, in VB.net In the project, we only need to add PigJSon.vb This class file, you can parse and assemble JSON.
+PigJSon VB.net Version of the source code.
 
 The source code uses. Net framework 4.5.
 
@@ -39,8 +39,5 @@ The source code uses. Net framework 4.5.
 
 Open the SLN file to view and debug the source code of pigjson.
 
-##### Src\VB.net\PigJSon\PigJSon.sln
-
-Open the SLN file to view and debug the source code of pigjson.
 
 
