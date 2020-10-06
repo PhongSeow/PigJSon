@@ -1,5 +1,5 @@
 # PigJSon
-Piggy JSON is a very simple JSON parsing and assembly toolkit that can support VB.net, You can use JSON in. Net without referring to a DLL, just a class file.
+Piggy JSON is a very lightweight JSON parsing and assembly toolkit that can support VB.net, You can use JSON in. Net without referring to a DLL, just need a class file.
 
 ## ***Folders and files description***
 
