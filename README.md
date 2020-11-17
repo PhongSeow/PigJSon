@@ -59,6 +59,3 @@ Main class, all functions are in it.
 Sample code form.
 
 
-
-
-
