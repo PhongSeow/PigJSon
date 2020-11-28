@@ -7,19 +7,19 @@ Piggy JSON is a very lightweight JSON parsing and assembly toolkit that can supp
 
 Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET project.
 
-#### Run\VB.net
+#### Setup\VB.net
 
 The execution code uses. Net framework 4.5.
 
-##### Run\VB.net\PigJSon.vb
+##### Setup\VB.net\PigJSon.vb
 
 In your vb.net This class file can be referenced in the project to obtain the parsing and assembly capabilities of JSON.
 
-##### Run\VB.net\PigJSon.exe
+##### Setup\VB.net\PigJSon.exe
 
 The execution effect of the sample code.
 
-##### [Run\VB.net\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Run/VB.net/Sample.md)
+##### [Setup\VB.net\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Run/VB.net/Sample.md)
 
 Sample code for how to use the PigJSon class.
 
