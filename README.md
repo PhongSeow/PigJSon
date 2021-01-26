@@ -19,7 +19,7 @@ In your vb.net This class file can be referenced in the project to obtain the pa
 
 The execution effect of the sample code.
 
-##### [Setup\VB.net\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Run/VB.net/Sample.md)
+##### [Setup\VB.net\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Setup/VB.net/Sample.md)
 
 Sample code for how to use the PigJSon class.
 
@@ -44,7 +44,7 @@ If pjParse.LastErr = "" Then
 End If
 ```
 
-***[See more sample code...](https://github.com/PhongSeow/PigJSon/blob/master/Run/VB.net/Sample.md)***
+***[See more sample code...](https://github.com/PhongSeow/PigJSon/blob/master/Setup/VB.net/Sample.md)***
 
 ##### Src\VB.net\PigJSon\PigJSon.sln
 
