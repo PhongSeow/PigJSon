@@ -1,18 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>PigJSonLib</RootNamespace>
-    <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;net472;</TargetFrameworks>
+    <TargetFrameworks>net20;net35;net40;net45;net5.0;netcoreapp3.1;</TargetFrameworks>
     <Authors>Seow Phong</Authors>
     <Company>Seow Phong Studio</Company>
     <Copyright>Copyright (c) 2021 Seow Phong</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <Description>A very lightweight JSON parsing and assembly toolkit.</Description>
-    <RepositoryUrl>https://github.com/PhongSeow/PigJSon</RepositoryUrl>
+    <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonLib</RepositoryUrl>
     <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
     <PackageIcon>SeowPhongLogo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType></RepositoryType>
+    <PackageTags>PigJSonLib lightweight JSON parsing assembly</PackageTags>
+    <PackageReleaseNotes>Increase support for .net 5.0 and .net core 3.1</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SeowPhongLogo.png" />
+    <None Remove="SeowPhongLogo.png" />
+    <None Include="SeowPhongLogo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="My Project\" />
@@ -20,14 +34,6 @@
 
   <ItemGroup>
     <None Include="..\..\..\..\..\..\..\Users\engine\Downloads\SeowPhongLogo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="SeowPhongLogo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

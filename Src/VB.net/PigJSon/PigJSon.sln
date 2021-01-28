@@ -1,7 +1,9 @@
-﻿
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PigJSon", "PigJSon\PigJSon.vbproj", "{8601CE21-14BD-419E-9F73-B1037A28E1E7}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PigJSonDemo", "PigJSon\PigJSonDemo.vbproj", "{8601CE21-14BD-419E-9F73-B1037A28E1E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9DD25DD-6D99-4054-B3FF-2A300A34AED9}
 	EndGlobalSection
 EndGlobal

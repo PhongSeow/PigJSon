@@ -1,4 +1,5 @@
-﻿Public Class frmPigJSonDemo
+﻿
+Public Class frmPigJSonDemo
     Private pjAssemble As PigJSon
     Private pjParse As PigJSon
     Private strJSonKey As String
@@ -262,6 +263,7 @@
         strDisplay &= "```" & vbCrLf
 
         Dim pjOneCompany As PigJSon
+
         Dim pjArray As PigJSon
         pjOneCompany = New PigJSon
         pjArray = New PigJSon
@@ -316,4 +318,5 @@
         End With
         Me.tbMain.Text = strDisplay
     End Sub
+
 End Class

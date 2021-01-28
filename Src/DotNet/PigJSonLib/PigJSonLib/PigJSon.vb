@@ -5,14 +5,14 @@
 '* Home Url: http://www.seowphong.com
 '* Version: 1.0.9
 '* Create Time: 8/8/2019
-'* 1.0.2    8/10/2020   Code changed from VB6 to VB.NET
-'* 1.0.3    8/12/2020   Some Function debugging 
-'* 1.0.4    8/16/2020   mAddJSonStr debugging
-'* 1.0.5    8/18/2020   AddArrayEle debugging
-'* 1.0.6    8/18/2020   Add overloaded function AddArrayEle
-'* 1.0.7    9/18/2020   Fix AddEle bug 
-'* 1.0.8    9/19/2020   Fix AddArrayEle,mAddEle bug and add AddOneArrayEle
-'* 1.0.9    10/1/2020   Fix AddArrayEleValue,add AddArrayEleBegin
+'* 1.0.2    10/8/2020   Code changed from VB6 to VB.NET
+'* 1.0.3    12/8/2020   Some Function debugging 
+'* 1.0.4    16/8/2020   mAddJSonStr debugging
+'* 1.0.5    18/8/2020   AddArrayEle debugging
+'* 1.0.6    18/8/2020   Add overloaded function AddArrayEle
+'* 1.0.7    18/9/2020   Fix AddEle bug 
+'* 1.0.8    19/9/2020   Fix AddArrayEle,mAddEle bug and add AddOneArrayEle
+'* 1.0.9    1/10/2020   Fix AddArrayEleValue,add AddArrayEleBegin
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
