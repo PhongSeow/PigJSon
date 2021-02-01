@@ -1,39 +1,37 @@
 # PigJSon
-Piggy JSON is a very lightweight JSON parsing and assembly toolkit that can support VB.net, You can use JSON in. Net without referring to a DLL, just need a class file.
+Piggy JSON is A very lightweight JSON parsing and assembly toolkit.
 
 ## ***Folders and files description***
 
-### Run
+### Release
 
-Execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET project.
+Release execute code directory, if you don't want to see the source program, you can use the files in this directory directly in your VB.NET project.
 
-#### Setup\VB.net
+#### Release\PigJSonLib
 
-The execution code uses. Net framework 4.5.
+Including  DLL file support .net Framework 2.0, 3.5, 4.0, 4.5, .net core 3.1 and .net 5.0.
 
-##### Setup\VB.net\PigJSon.vb
+Including NuGet package.
 
-In your vb.net This class file can be referenced in the project to obtain the parsing and assembly capabilities of JSON.
 
-##### Setup\VB.net\PigJSon.exe
 
-The execution effect of the sample code.
+##### [Release\Demo\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Release\Demo/Sample.md)
 
-##### [Setup\VB.net\Sample.md](https://github.com/PhongSeow/PigJSon/blob/master/Setup/VB.net/Sample.md)
+Sample code for how to use the PigJSonLib class.
 
-Sample code for how to use the PigJSon class.
 
-## 
 
 ### Src
 
 Source code directory.
 
+#### Src\DotNet\PigJSonLib
+
+The source code of PigJSonLib.
+
 #### Src\VB.net
 
 PigJSon VB.net Version of the source code.
-
-The source code uses. Net framework 4.5.
 
 ***Sample code***
 
