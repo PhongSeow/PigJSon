@@ -12,8 +12,9 @@
 	  <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
 	  <RepositoryType>GIT</RepositoryType>
 	  <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonDemo</RepositoryUrl>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	  <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
+	  <PackageReleaseNotes>Add demo code.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
