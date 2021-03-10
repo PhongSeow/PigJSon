@@ -1,5 +1,5 @@
 ﻿'*******************************************************
-'* Name: Piggy JSon
+'* Name: PigJSon
 '* Author: Seow Phong
 '* Describe: Simple JSON class, which can assemble and parse JSON definitions without components.
 '* Home Url: http://www.seowphong.com
@@ -13,9 +13,13 @@
 '* 1.0.7    18/9/2020   Fix AddEle bug 
 '* 1.0.8    19/9/2020   Fix AddArrayEle,mAddEle bug and add AddOneArrayEle
 '* 1.0.9    1/10/2020   Fix AddArrayEleValue,add AddArrayEleBegin
+'* 1.0.10   10/3/2020   Use PigBaseMini，and add IsGetValueErrRetNothing
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
+    Inherits PigBaseMini
+    Private Const CLS_VERSION As String = "1.0.10"
+
     ''' <summary>The type of the JSON element</summary>
     Public Enum xpJSonEleType
         ''' <summary>First element</summary>
@@ -48,26 +52,19 @@ Public Class PigJSon
     Private mstrLastErr As String
     Private mstrClsName = Me.GetType.Name.ToString()
 
-    ''' <summary>Get the error information for the function</summary>
-    ''' <param name="SubName">Function or procedure name</param>
-    ''' <param name="StepName">Step name</param>
-    ''' <param name="exIn">Exception object</param>
-    Private Function mGetSubErrInf(SubName As String, StepName As String, ByRef exIn As System.Exception) As String
-        Try
-            mGetSubErrInf = mstrClsName & "." & SubName
-            If StepName <> "" Then mGetSubErrInf &= "(" & StepName & ")"
-            If StepName <> "" Then mGetSubErrInf &= ":" & exIn.ToString
-        Catch ex As Exception
-            Return ex.ToString
-        End Try
-    End Function
-
-    ''' <summary>Last error. Null means no error.</summary>
-    Public ReadOnly Property LastErr As String
+    ''' <summary>
+    ''' If Get value Error, return Nothing 
+    ''' </summary>
+    Private mbolIsGetValueErrRetNothing As Boolean = False
+    Public Property IsGetValueErrRetNothing() As Boolean
         Get
-            LastErr = mstrLastErr
+            Return mbolIsGetValueErrRetNothing
         End Get
+        Friend Set(ByVal value As Boolean)
+            mbolIsGetValueErrRetNothing = value
+        End Set
     End Property
+
 
     ''' <summary>Full JSON string, the assembled JSON string is in compact format and can be displayed in a third-party format.</summary>
     Public ReadOnly Property MainJSonStr As String
@@ -116,7 +113,8 @@ Public Class PigJSon
             Return "OK"
         Catch ex As Exception
             mbolIsParse = False
-            Return mGetSubErrInf("mParseJSON", strStepName, ex)
+            Me.SetSubErrInf("mParseJSON", strStepName, ex)
+            Return Me.LastErr
         End Try
     End Function
 
@@ -129,10 +127,10 @@ Public Class PigJSon
             Else
                 mDate2Lng = mtsTimeDiff.TotalMilliseconds - System.TimeZone.CurrentTimeZone.GetUtcOffset(Now).Hours * 3600000
             End If
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
+            Me.SetSubErrInf("mDate2Lng", ex)
             Return 0
-            mstrLastErr = Me.mGetSubErrInf("mDate2Lng", "", ex)
         End Try
     End Function
 
@@ -144,8 +142,9 @@ Public Class PigJSon
         Try
             Dim strRet As String = Me.mAddEle(EleKey, IntValue.ToString, IsFirstEle, False)
             If strRet <> "" Then Err.Raise(-1, , strRet)
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddEle.IntValue", "", ex)
+            Me.SetSubErrInf("AddEle.IntValue", ex)
         End Try
     End Sub
 
@@ -157,22 +156,12 @@ Public Class PigJSon
         Try
             Dim strRet As String = Me.mAddEle(EleKey, StrValue, IsFirstEle, True)
             If strRet <> "" Then Err.Raise(-1, , strRet)
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddEle.StrValue", "", ex)
+            Me.SetSubErrInf("AddEle.StrValue", ex)
         End Try
     End Sub
 
-    '''' <summary>Add a array element (boolean value)</summary>
-    '''' <param name="BoolValue">The boolean value of the element</param>
-    '''' <param name="IsFirstEle">Is it the first element</param>
-    'Public Overloads Sub AddArrayEle(BoolValue As Boolean, Optional IsFirstEle As Boolean = False)
-    '    Try
-    '        Dim strRet = Me.mAddEle("", BoolValue.ToString, IsFirstEle, False)
-    '        If strRet <> "" Then Err.Raise(-1, , strRet)
-    '    Catch ex As Exception
-    '        mstrLastErr = Me.mGetSubErrInf("AddArrayEle.BoolValue", "", ex)
-    '    End Try
-    'End Sub
 
     ''' <summary>Add a non array element (boolean value)</summary>
     ''' <param name="EleKey">The key of the element, An empty string represents an array element without a key value.</param>
@@ -182,8 +171,9 @@ Public Class PigJSon
         Try
             Dim strRet = Me.mAddEle(EleKey, BoolValue.ToString, IsFirstEle, False)
             If strRet <> "" Then Err.Raise(-1, , strRet)
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddEle.BoolValue", "", ex)
+            Me.SetSubErrInf("AddEle.BoolValue", ex)
         End Try
     End Sub
 
@@ -195,8 +185,9 @@ Public Class PigJSon
         Try
             Dim strRet = Me.mAddEle(EleKey, DecValue.ToString, IsFirstEle, False)
             If strRet <> "" Then Err.Raise(-1, , strRet)
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddEle.DateValue", "", ex)
+            Me.SetSubErrInf("AddEle.DateValue", ex)
         End Try
     End Sub
 
@@ -210,9 +201,9 @@ Public Class PigJSon
             If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
             Dim strRet = Me.mAddEle(EleKey, lngDate.ToString, IsFirstEle, False)
             If strRet <> "" Then Err.Raise(-1, , strRet)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddEle.DateValue", "", ex)
+            Me.SetSubErrInf("AddEle.DateValue", ex)
         End Try
     End Sub
 
@@ -227,8 +218,9 @@ Public Class PigJSon
             If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
             Dim strRet = Me.mAddEle(EleKey, lngDate.ToString, IsFirstEle, False)
             If strRet <> "" Then Err.Raise(-1, , strRet)
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddEle.DateValue.IsLocalTime", "", ex)
+            Me.SetSubErrInf("AddEle.DateValue.IsLocalTime", ex)
         End Try
     End Sub
 
@@ -239,10 +231,11 @@ Public Class PigJSon
         Try
             JSonKey = "json." & JSonKey
             OutJSonValue = moSc.Eval(JSonKey)
+            If OutJSonValue Is Nothing Then OutJSonValue = ""
             Return "OK"
         Catch ex As Exception
             OutJSonValue = ""
-            Return Me.mGetSubErrInf("mGetJSonValue", "", ex)
+            Return Me.GetSubErrInf("mGetJSonValue", ex)
         End Try
     End Function
 
@@ -255,10 +248,14 @@ Public Class PigJSon
             strStepName = "mGetJSonValue"
             strRet = Me.mGetJSonValue(JSonKey, GetStrValue)
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetStrValue = ""
-            mstrLastErr = Me.mGetSubErrInf("GetStrValue", strStepName, ex)
+            Me.SetSubErrInf("GetStrValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return ""
+            End If
         End Try
     End Function
 
@@ -273,10 +270,14 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             strStepName = "Convert string to boolean"
             GetBoolValue = CBool(strValue)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetBoolValue = Nothing
-            mstrLastErr = Me.mGetSubErrInf("GetBoolValue", strStepName, ex)
+            Me.SetSubErrInf("GetBoolValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return False
+            End If
         End Try
     End Function
 
@@ -291,10 +292,14 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             strStepName = "Convert string to long"
             GetDecValue = CDec(strValue)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetDecValue = Nothing
-            mstrLastErr = Me.mGetSubErrInf("GetDecValue", strStepName, ex)
+            Me.SetSubErrInf("GetDecValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return 0
+            End If
         End Try
     End Function
 
@@ -310,10 +315,14 @@ Public Class PigJSon
             strStepName = "Convert string to datetime"
             GetDateValue = Me.mLng2Date(CLng(strValue), False)
             If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetDateValue = Nothing
-            mstrLastErr = Me.mGetSubErrInf("GetDateValue", strStepName, ex)
+            Me.SetSubErrInf("GetDateValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return DateTime.MinValue
+            End If
         End Try
     End Function
 
@@ -330,10 +339,14 @@ Public Class PigJSon
             strStepName = "Convert string to datetime"
             GetDateValue = Me.mLng2Date(CLng(strValue), IsLocalTime)
             If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetDateValue = Nothing
-            mstrLastErr = Me.mGetSubErrInf("GetDateValue", strStepName, ex)
+            Me.SetSubErrInf("GetDateValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return DateTime.MinValue
+            End If
         End Try
     End Function
 
@@ -345,10 +358,14 @@ Public Class PigJSon
             Else
                 mLng2Date = dteStart.AddMilliseconds(LngValue)
             End If
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("mLng2Date", "", ex)
-            Return Nothing
+            Me.SetSubErrInf("GetDateValue", ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return DateTime.MinValue
+            End If
         End Try
     End Function
 
@@ -364,10 +381,14 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             strStepName = "Convert string to long"
             GetLngValue = CLng(strValue)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetLngValue = Nothing
-            mstrLastErr = Me.mGetSubErrInf("GetLngValue", strStepName, ex)
+            Me.SetSubErrInf("GetLngValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return 0
+            End If
         End Try
     End Function
 
@@ -382,10 +403,14 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             strStepName = "Convert string to integer"
             GetIntValue = CInt(strValue)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            GetIntValue = Nothing
-            mstrLastErr = Me.mGetSubErrInf("GetIntValue", strStepName, ex)
+            Me.SetSubErrInf("GetIntValue", strStepName, ex)
+            If Me.IsGetValueErrRetNothing = True Then
+                Return Nothing
+            Else
+                Return 0
+            End If
         End Try
     End Function
 
@@ -405,9 +430,9 @@ Public Class PigJSon
                 Case Else
                     Err.Raise(-1, , "Invalid SymbolType")
             End Select
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddSymbol", "", ex)
+            Me.SetSubErrInf("AddSymbol", ex)
         End Try
     End Sub
 
@@ -435,7 +460,7 @@ Public Class PigJSon
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
             Return "OK"
         Catch ex As Exception
-            Return Me.mGetSubErrInf("mAddEle", strStepName, ex)
+            Return Me.GetSubErrInf("mAddEle", strStepName, ex)
         End Try
     End Function
 
@@ -452,9 +477,9 @@ Public Class PigJSon
                 .Append(EleKey)
                 .Append(""":[")
             End With
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+            Me.SetSubErrInf("AddArrayEle", strStepName, ex)
         End Try
     End Sub
 
@@ -470,9 +495,9 @@ Public Class PigJSon
                 .Append(EleKey)
                 .Append(""":[")
             End With
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEle", strStepName, ex)
+            Me.SetSubErrInf("AddArrayEle", strStepName, ex)
         End Try
     End Sub
 
@@ -486,9 +511,9 @@ Public Class PigJSon
             strStepName = "Add EleValue"
             strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", ArrayEleValue)
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEleValue", strStepName, ex)
+            Me.SetSubErrInf("AddArrayEleValue", strStepName, ex)
         End Try
     End Sub
 
@@ -510,9 +535,9 @@ Public Class PigJSon
             strStepName = "Add EleValue"
             strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", "[" & ArrayEleValue & "]")
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEleValue", strStepName, ex)
+            Me.SetSubErrInf("AddArrayEleValue", strStepName, ex)
         End Try
     End Sub
 
@@ -526,14 +551,10 @@ Public Class PigJSon
             strStepName = "Add EleValue"
             strRet = mAddJSonStr(msbMain, xpJSonEleType.ArrayValue, "", ArrayEleValue)
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("AddArrayEleValue", strStepName, ex)
+            Me.SetSubErrInf("AddArrayEleValue", strStepName, ex)
         End Try
-    End Sub
-
-    Private Sub mClearErr()
-        If mstrLastErr <> "" Then mstrLastErr = ""
     End Sub
 
     ''' <summary>Reset so that JSON can be assembled.</summary>
@@ -541,9 +562,9 @@ Public Class PigJSon
         Try
             If Not msbMain Is Nothing Then msbMain = Nothing
             msbMain = New System.Text.StringBuilder("")
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("Init", "", ex)
+            Me.SetSubErrInf("Reset", ex)
         End Try
     End Sub
 
@@ -583,7 +604,7 @@ Public Class PigJSon
             End Select
             Return "OK"
         Catch ex As Exception
-            Return Me.mGetSubErrInf("mAddJSonStr", strStepName, ex)
+            Return Me.GetSubErrInf("mAddJSonStr", strStepName, ex)
         End Try
     End Function
 
@@ -595,9 +616,9 @@ Public Class PigJSon
             If SrcStr.IndexOf(vbBack) > 0 Then SrcStr = Replace(SrcStr, vbBack, "\b")
             If SrcStr.IndexOf(vbFormFeed) > 0 Then SrcStr = Replace(SrcStr, vbFormFeed, "\f")
             If SrcStr.IndexOf(vbVerticalTab) > 0 Then SrcStr = Replace(SrcStr, vbVerticalTab, "\v")
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("mSrc2CtlStr", "", ex)
+            Me.SetSubErrInf("mSrc2CtlStr", ex)
         End Try
     End Sub
 
@@ -609,9 +630,9 @@ Public Class PigJSon
             If CtlStr.IndexOf("\b") > 0 Then CtlStr = Replace(CtlStr, "\b", vbBack)
             If CtlStr.IndexOf(vbFormFeed) > 0 Then CtlStr = Replace(CtlStr, "\f", vbFormFeed)
             If CtlStr.IndexOf(vbVerticalTab) > 0 Then CtlStr = Replace(CtlStr, "\v", vbVerticalTab)
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("mCtlStr2Src", "", ex)
+            Me.SetSubErrInf("mCtlStr2Src", ex)
         End Try
     End Sub
 
@@ -619,9 +640,9 @@ Public Class PigJSon
         Try
             If InStr(SrcStr, "\") <> 0 Then SrcStr = Replace(SrcStr, "\", "\\")
             If InStr(SrcStr, """") <> 0 Then SrcStr = Replace(SrcStr, """", "\""")
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("mSrc2JSonStr", "", ex)
+            Me.SetSubErrInf("mSrc2JSonStr", ex)
         End Try
     End Sub
 
@@ -629,9 +650,9 @@ Public Class PigJSon
         Try
             If InStr(JSonStr, "\""") <> 0 Then JSonStr = Replace(JSonStr, "\""", """")
             If InStr(JSonStr, "\\") <> 0 Then JSonStr = Replace(JSonStr, "\\", "\")
-            Me.mClearErr()
+            Me.ClearErr()
         Catch ex As Exception
-            mstrLastErr = Me.mGetSubErrInf("mJSonStr2Src", "", ex)
+            Me.SetSubErrInf("mJSonStr2Src", ex)
         End Try
     End Sub
 
@@ -641,10 +662,12 @@ Public Class PigJSon
     End Sub
 
     Public Sub New()
+        MyBase.New(CLS_VERSION)
         Me.Reset()
     End Sub
 
     Public Sub New(JSonStr As String)
+        MyBase.New(CLS_VERSION)
         Dim strRet As String = Me.mParseJSON(JSonStr)
         If strRet <> "OK" Then
             mstrLastErr = strRet

@@ -13,11 +13,11 @@ Microsoft Script Control 1.0 is required. Windows will be installed in advance.<
     <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
     <PackageIcon>SeowPhongLogo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.0</Version>
+    <Version>1.3.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType></RepositoryType>
     <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-    <PackageReleaseNotes>Adjust the supporting framework</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix some bugs.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

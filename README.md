@@ -1,6 +1,8 @@
 # PigJSon
 Piggy JSON is A very lightweight JSON parsing and assembly toolkit.
 
+If the program is running in IIS, the advanced settings need set Enable 32-bit Applications of Application pools is true.
+
 ## ***Folders and files description***
 
 ### Release
