@@ -47,11 +47,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PigJSonDemo, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PigJSonDemo.1.0.2\lib\net45\PigJSonDemo.dll</HintPath>
-    </Reference>
     <Reference Include="PigJSonLib, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PigJSonLib.1.2.0\lib\net45\PigJSonLib.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PigJSonLib\PigJSonLib\bin\Debug\net45\PigJSonLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -74,6 +72,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleDemo.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
