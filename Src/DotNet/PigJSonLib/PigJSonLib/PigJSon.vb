@@ -3,7 +3,7 @@
 '* Author: Seow Phong
 '* Describe: Simple JSON class, which can assemble and parse JSON definitions without components.
 '* Home Url: http://www.seowphong.com
-'* Version: 1.0.11
+'* Version: 1.0.15
 '* Create Time: 8/8/2019
 '* 1.0.2    10/8/2020   Code changed from VB6 to VB.NET
 '* 1.0.3    12/8/2020   Some Function debugging 
@@ -14,12 +14,15 @@
 '* 1.0.8    19/9/2020   Fix AddArrayEle,mAddEle bug and add AddOneArrayEle
 '* 1.0.9    1/10/2020   Fix AddArrayEleValue,add AddArrayEleBegin
 '* 1.0.10   10/3/2020   Use PigBaseMini，and add IsGetValueErrRetNothing
-'* 1.0.11   10/7/2020   Modify AddEle
+'* 1.0.11   4/4/2021   Modify AddArrayEleBegin,mSrc2JSonStr,mJSonStr2Src,mLng2Date
+'* 1.0.12   4/4/2021   Modify mDate2Lng,mLng2Date
+'* 1.0.13   4/4/2021   Modify AddEle
+'* 1.0.15   19/7/2021  Modify mLng2Date
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
     Inherits PigBaseMini
-    Private Const CLS_VERSION As String = "1.0.11"
+    Private Const CLS_VERSION As String = "1.0.15"
 
     ''' <summary>The type of the JSON element</summary>
     Public Enum xpJSonEleType
@@ -119,16 +122,11 @@ Public Class PigJSon
         End Try
     End Function
 
-    Private Function mDate2Lng(DateValue As DateTime, IsLocalTime As Boolean) As Long
+    Private Function mDate2Lng(DateValue As DateTime) As Long
         Dim dteStart As New DateTime(1970, 1, 1)
         Dim mtsTimeDiff As TimeSpan = DateValue - dteStart
         Try
-            If IsLocalTime = True Then
-                mDate2Lng = mtsTimeDiff.TotalMilliseconds
-            Else
-                mDate2Lng = mtsTimeDiff.TotalMilliseconds - System.TimeZone.CurrentTimeZone.GetUtcOffset(Now).Hours * 3600000
-            End If
-            Me.ClearErr()
+            mDate2Lng = mtsTimeDiff.TotalMilliseconds
         Catch ex As Exception
             Me.SetSubErrInf("mDate2Lng", ex)
             Return 0
@@ -198,7 +196,7 @@ Public Class PigJSon
     ''' <param name="IsFirstEle">Is it the first element</param>
     Public Overloads Sub AddEle(EleKey As String, DateValue As DateTime, Optional IsFirstEle As Boolean = False)
         Try
-            Dim lngDate As Long = Me.mDate2Lng(DateValue, True)
+            Dim lngDate As Long = Me.mDate2Lng(DateValue)
             If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
             Dim strRet = Me.mAddEle(EleKey, lngDate.ToString, IsFirstEle, False)
             If strRet <> "OK" Then Err.Raise(-1, , strRet)
@@ -208,22 +206,6 @@ Public Class PigJSon
         End Try
     End Sub
 
-    ''' <summary>Add a non array element (date value, need to specify whether it is a local time)</summary>
-    ''' <param name="EleKey">The key of the element, An empty string represents an array element without a key value.</param>
-    ''' <param name="DateValue">The date value of the element</param>
-    ''' <param name="IsLocalTime">Is it local time</param>
-    ''' <param name="IsFirstEle">Is it the first element</param>
-    Public Overloads Sub AddEle(EleKey As String, DateValue As DateTime, IsLocalTime As Boolean, Optional IsFirstEle As Boolean = False)
-        Try
-            Dim lngDate As Long = Me.mDate2Lng(DateValue, IsLocalTime)
-            If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
-            Dim strRet = Me.mAddEle(EleKey, lngDate.ToString, IsFirstEle, False)
-            If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            Me.ClearErr()
-        Catch ex As Exception
-            Me.SetSubErrInf("AddEle.DateValue.IsLocalTime", ex)
-        End Try
-    End Sub
 
     ''' <summary>Gets the value of JSON</summary>
     ''' <param name="JSonKey">JSON key</param>
@@ -354,14 +336,13 @@ Public Class PigJSon
     Private Function mLng2Date(LngValue As Long, IsLocalTime As Boolean) As DateTime
         Dim dteStart As New DateTime(1970, 1, 1)
         Try
-            If IsLocalTime = True Then
+            If IsLocalTime = False Then
                 mLng2Date = dteStart.AddMilliseconds(LngValue - System.TimeZone.CurrentTimeZone.GetUtcOffset(Now).Hours * 3600000)
             Else
                 mLng2Date = dteStart.AddMilliseconds(LngValue)
             End If
-            Me.ClearErr()
         Catch ex As Exception
-            Me.SetSubErrInf("GetDateValue", ex)
+            Me.SetSubErrInf("mLng2Date", ex)
             If Me.IsGetValueErrRetNothing = True Then
                 Return Nothing
             Else
@@ -473,7 +454,11 @@ Public Class PigJSon
         Try
             mSrc2JSonStr(EleKey)
             With msbMain
-                If IsFirstEle = False Then .Append(",")
+                If IsFirstEle = False Then
+                    .Append(",")
+                Else
+                    .Append("{")
+                End If
                 .Append("""")
                 .Append(EleKey)
                 .Append(""":[")
@@ -637,20 +622,28 @@ Public Class PigJSon
         End Try
     End Sub
 
-    Private Sub mSrc2JSonStr(SrcStr As String)
+    Private Sub mSrc2JSonStr(ByRef SrcStr As String)
         Try
-            If InStr(SrcStr, "\") <> 0 Then SrcStr = Replace(SrcStr, "\", "\\")
-            If InStr(SrcStr, """") <> 0 Then SrcStr = Replace(SrcStr, """", "\""")
+            If InStr(SrcStr, "\") <> 0 Then
+                SrcStr = Replace(SrcStr, "\", "\\")
+            End If
+            If InStr(SrcStr, """") <> 0 Then
+                SrcStr = Replace(SrcStr, """", "\""")
+            End If
             Me.ClearErr()
         Catch ex As Exception
             Me.SetSubErrInf("mSrc2JSonStr", ex)
         End Try
     End Sub
 
-    Private Sub mJSonStr2Src(JSonStr As String)
+    Private Sub mJSonStr2Src(ByRef JSonStr As String)
         Try
-            If InStr(JSonStr, "\""") <> 0 Then JSonStr = Replace(JSonStr, "\""", """")
-            If InStr(JSonStr, "\\") <> 0 Then JSonStr = Replace(JSonStr, "\\", "\")
+            If InStr(JSonStr, "\""") <> 0 Then
+                JSonStr = Replace(JSonStr, "\""", """")
+            End If
+            If InStr(JSonStr, "\\") <> 0 Then
+                JSonStr = Replace(JSonStr, "\\", "\")
+            End If
             Me.ClearErr()
         Catch ex As Exception
             Me.SetSubErrInf("mJSonStr2Src", ex)

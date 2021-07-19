@@ -47,8 +47,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PigJSonLib, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PigJSonLib">
       <HintPath>..\..\PigJSonLib\PigJSonLib\bin\Debug\net45\PigJSonLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
