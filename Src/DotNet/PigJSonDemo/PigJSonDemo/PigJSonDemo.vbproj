@@ -12,9 +12,9 @@
 	  <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
 	  <RepositoryType>GIT</RepositoryType>
 	  <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonDemo</RepositoryUrl>
-	  <Version>1.0.3</Version>
+	  <Version>1.0.4</Version>
 	  <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-	  <PackageReleaseNotes>Reference the latest class library.</PackageReleaseNotes>
+	  <PackageReleaseNotes>Fix bugs for DateTime handle.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PigJSonLib" Version="1.3.3.12" />
+    <PackageReference Include="PigJSonLib" Version="1.3.3.16" />
   </ItemGroup>
 
 </Project>

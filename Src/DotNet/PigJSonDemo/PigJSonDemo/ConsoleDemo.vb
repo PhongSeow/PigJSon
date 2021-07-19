@@ -282,7 +282,6 @@ Public Class ConsoleDemo
         strDisplay &= vbTab & ".AddEle(""VisitPerDay"", CDec(168.88))" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""VisitTimeStr"", ""8/8/2020"")" & vbCrLf
         strDisplay &= vbTab & ".AddEle(""VisitTime"", Now)" & vbCrLf
-        strDisplay &= vbTab & ".AddEle(""VisitTimeGT"", Now, False, False)   'Global time" & vbCrLf
         strDisplay &= vbTab & ".AddSymbol(PigJSon.xpSymbolType.EleEndFlag)" & vbCrLf
         strDisplay &= vbTab & "If .ParseJSON() = ""OK"" Then" & vbCrLf
         strDisplay &= vbTab & vbTab & "Debug.Print(.MainJSonStr)" & vbCrLf
@@ -293,7 +292,7 @@ Public Class ConsoleDemo
         strDisplay &= vbTab & vbTab & "Debug.Print(.GetDecValue(""VisitPerDay"").ToString)" & vbCrLf
         strDisplay &= vbTab & vbTab & "Debug.Print(.GetStrValue(""VisitTimeStr""))" & vbCrLf
         strDisplay &= vbTab & vbTab & "Debug.Print(.GetDateValue(""VisitTime"").ToString)" & vbCrLf
-        strDisplay &= vbTab & vbTab & "Debug.Print(.GetDateValue(""VisitTimeGT"", False).ToString)" & vbCrLf
+        strDisplay &= vbTab & vbTab & "Debug.Print(.GetDateValue(""VisitTime"", True).ToString)" & vbCrLf
         strDisplay &= vbTab & "End If" & vbCrLf
         strDisplay &= "End With" & vbCrLf
         strDisplay &= "```" & vbCrLf
@@ -307,7 +306,6 @@ Public Class ConsoleDemo
             .AddEle("VisitPerDay", CDec(168.88))
             .AddEle("VisitTimeStr", "8/8/2020")
             .AddEle("VisitTime", Now)
-            .AddEle("VisitTimeGT", Now, False, False)   'Global time
             .AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
             If .ParseJSON() = "OK" Then
                 strDisplay &= vbCrLf & "***Return results***" & vbCrLf
@@ -320,7 +318,7 @@ Public Class ConsoleDemo
                 strDisplay &= .GetDecValue("VisitPerDay").ToString & vbCrLf
                 strDisplay &= .GetStrValue("VisitTimeStr") & vbCrLf
                 strDisplay &= .GetDateValue("VisitTime").ToString & vbCrLf
-                strDisplay &= .GetDateValue("VisitTimeGT", False).ToString & vbCrLf
+                strDisplay &= .GetDateValue("VisitTime", True).ToString & vbCrLf
                 strDisplay &= "```" & vbCrLf
             End If
         End With
