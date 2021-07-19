@@ -52,7 +52,6 @@ With pjAssemble
 	.AddEle("VisitPerDay", CDec(168.88))
 	.AddEle("VisitTimeStr", "8/8/2020")
 	.AddEle("VisitTime", Now)
-	.AddEle("VisitTimeGT", Now, False, False)   'Global time
 	.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
 	If .ParseJSON() = "OK" Then
 		Debug.Print(.MainJSonStr)
@@ -63,14 +62,14 @@ With pjAssemble
 		Debug.Print(.GetDecValue("VisitPerDay").ToString)
 		Debug.Print(.GetStrValue("VisitTimeStr"))
 		Debug.Print(.GetDateValue("VisitTime").ToString)
-		Debug.Print(.GetDateValue("VisitTimeGT", False).ToString)
+		Debug.Print(.GetDateValue("VisitTime", True).ToString)
 	End If
 End With
 ```
 
 ***Return results***
 ```
-{"SiteName":"Seow Phong Web Site","SiteUrl":"http://www.seowphong.com","Describe":"A website for free software\r\n and shareware","Rank":"168","VisitPerDay":"168.88","VisitTimeStr":"8/8/2020","VisitTime":"1601242412742","VisitTimeGT":"1601213612755"}
+{"SiteName":"Seow Phong Web Site","SiteUrl":"http://www.seowphong.com","Describe":"A website for free software\r\n and shareware","Rank":"168","VisitPerDay":"168.88","VisitTimeStr":"8/8/2020","VisitTime":"1601242412742"}
 Seow Phong Web Site
 http://www.seowphong.com
 A website for free software
