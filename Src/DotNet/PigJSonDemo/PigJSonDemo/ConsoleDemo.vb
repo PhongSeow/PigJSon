@@ -13,6 +13,8 @@ Public Class ConsoleDemo
             Console.WriteLine("Press Q to Exit")
             Console.WriteLine("Press A to Assemble Demo")
             Console.WriteLine("Press B to Show JSon Value")
+            Console.WriteLine("Press C to New PigJSon")
+            Console.WriteLine("Press D to UnlockEndSymbol")
             Console.WriteLine("*******************")
             Select Case Console.ReadKey().Key
                 Case ConsoleKey.Q
@@ -56,6 +58,59 @@ Public Class ConsoleDemo
                     Console.WriteLine(strJSonKey & "=" & pjParse.GetStrValue(strJSonKey))
                     If pjParse.LastErr <> "" Then Console.WriteLine(strJSonKey & " error = " & pjParse.LastErr)
                     Console.WriteLine("#################")
+                Case ConsoleKey.C
+                    Console.WriteLine("#################")
+                    Console.WriteLine("New PigJSon")
+                    Console.WriteLine("#################")
+                    Console.WriteLine("Input JSon:")
+                    Dim strJSon As String = Console.ReadLine
+                    Dim oPigJSon As New PigJSon(strJSon)
+                    If oPigJSon.LastErr <> "" Then
+                        Console.WriteLine(oPigJSon.LastErr)
+                    Else
+                        oPigJSon.ParseJSON()
+                        If oPigJSon.LastErr <> "" Then
+                            Console.WriteLine(oPigJSon.LastErr)
+                        Else
+                            Console.WriteLine("New and ParseJSON OK")
+                            Console.WriteLine("MainJSonStr=" & oPigJSon.MainJSonStr)
+                        End If
+                    End If
+                Case ConsoleKey.D
+                    Console.WriteLine("#################")
+                    Console.WriteLine("UnlockEndSymbol")
+                    Console.WriteLine("#################")
+                    Console.WriteLine("Input JSon:")
+                    Dim strJSon As String = Console.ReadLine
+                    Dim oPigJSon As New PigJSon(strJSon)
+                    If oPigJSon.LastErr <> "" Then
+                        Console.WriteLine(oPigJSon.LastErr)
+                    Else
+                        oPigJSon.ParseJSON()
+                        If oPigJSon.LastErr <> "" Then
+                            Console.WriteLine(oPigJSon.LastErr)
+                        Else
+                            Console.WriteLine("New and ParseJSON OK")
+                            Console.WriteLine("MainJSonStr=" & oPigJSon.MainJSonStr)
+                            Console.WriteLine("UnlockEndSymbol")
+                            oPigJSon.UnlockEndSymbol()
+                            If oPigJSon.LastErr <> "" Then
+                                Console.WriteLine(oPigJSon.LastErr)
+                            Else
+                                Console.WriteLine("OK")
+                                oPigJSon.AddEle("aaaa", "bbbb")
+                                oPigJSon.AddSymbol(PigJSon.xpSymbolType.EleEndFlag)
+                                Console.WriteLine("Re ParseJSON")
+                                oPigJSon.ParseJSON()
+                                If oPigJSon.LastErr <> "" Then
+                                    Console.WriteLine(oPigJSon.LastErr)
+                                Else
+                                    Console.WriteLine("OK")
+                                    Console.WriteLine(oPigJSon.MainJSonStr)
+                                End If
+                            End If
+                        End If
+                    End If
             End Select
         Loop
     End Sub
