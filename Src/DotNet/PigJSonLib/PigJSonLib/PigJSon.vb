@@ -3,7 +3,7 @@
 '* Author: Seow Phong
 '* Describe: Simple JSON class, which can assemble and parse JSON definitions without components.
 '* Home Url: http://www.seowphong.com
-'* Version: 1.0.15
+'* Version: 1.0.17
 '* Create Time: 8/8/2019
 '* 1.0.2    10/8/2020   Code changed from VB6 to VB.NET
 '* 1.0.3    12/8/2020   Some Function debugging 
@@ -18,11 +18,13 @@
 '* 1.0.12   4/4/2021   Modify mDate2Lng,mLng2Date
 '* 1.0.13   4/4/2021   Modify AddEle
 '* 1.0.15   19/7/2021  Modify mLng2Date
+'* 1.0.16   29/7/2021  Add UnlockEndSymbol
+'* 1.0.17   30/7/2021  Modify New, modify UnlockEndSymbol
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
     Inherits PigBaseMini
-    Private Const CLS_VERSION As String = "1.0.15"
+    Private Const CLS_VERSION As String = "1.0.17"
 
     ''' <summary>The type of the JSON element</summary>
     Public Enum xpJSonEleType
@@ -446,6 +448,34 @@ Public Class PigJSon
         End Try
     End Function
 
+    ''' <summary>
+    ''' Unpack the complete JSON terminator and use it to append JSON elements.|将完整的JSon结束符解开，用于追加JSon元素。
+    ''' </summary>
+    Public Sub UnlockEndSymbol()
+        Dim strStepName As String = ""
+        Try
+            Dim strRet As String
+            Dim strJSon As String = msbMain.ToString()
+            strStepName = "ParseJSON"
+            strRet = Me.mParseJSON(strJSon)
+            If strRet <> "OK" Then Throw New Exception("Currently, it is not a complete JSON.")
+            strStepName = "Reset"
+            Me.Reset()
+            If Me.LastErr <> "" Then Throw New Exception(Me.LastErr)
+            strStepName = "Find EndSymbol"
+            Dim i As Long
+            For i = strJSon.Length To 1 Step -1
+                If Mid(strJSon, i, 1) = "}" Then
+                    Exit For
+                End If
+            Next
+            msbMain.Append(Left(strJSon, i - 1))
+            Me.ClearErr()
+        Catch ex As Exception
+            Me.SetSubErrInf("UnlockEndSymbol", strStepName, ex)
+        End Try
+    End Sub
+
     ''' <summary>Add a array JSON element begin</summary>
     ''' <param name="EleKey">The key of the element</param>
     ''' <param name="IsFirstEle">Is it the first element</param>
@@ -662,11 +692,19 @@ Public Class PigJSon
 
     Public Sub New(JSonStr As String)
         MyBase.New(CLS_VERSION)
-        Dim strRet As String = Me.mParseJSON(JSonStr)
-        If strRet <> "OK" Then
-            mstrLastErr = strRet
-        Else
-            mstrLastErr = ""
-        End If
+        Dim strStepName As String = ""
+        Try
+            strStepName = "mParseJSON"
+            Dim strRet As String = Me.mParseJSON(JSonStr)
+            If strRet <> "OK" Then Throw New Exception(strRet)
+            strStepName = "Reset"
+            Me.Reset()
+            If Me.LastErr <> "" Then Throw New Exception(Me.LastErr)
+            strStepName = "Append"
+            msbMain.Append(JSonStr)
+            Me.ClearErr()
+        Catch ex As Exception
+            Me.SetSubErrInf("New", strStepName, ex)
+        End Try
     End Sub
 End Class
