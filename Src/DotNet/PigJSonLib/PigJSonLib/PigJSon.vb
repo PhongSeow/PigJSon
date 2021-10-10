@@ -3,7 +3,7 @@
 '* Author: Seow Phong
 '* Describe: Simple JSON class, which can assemble and parse JSON definitions without components.
 '* Home Url: http://www.seowphong.com
-'* Version: 1.0.17
+'* Version: 1.2
 '* Create Time: 8/8/2019
 '* 1.0.2    10/8/2020   Code changed from VB6 to VB.NET
 '* 1.0.3    12/8/2020   Some Function debugging 
@@ -20,11 +20,13 @@
 '* 1.0.15   19/7/2021  Modify mLng2Date
 '* 1.0.16   29/7/2021  Add UnlockEndSymbol
 '* 1.0.17   30/7/2021  Modify New, modify UnlockEndSymbol
+'* 1.1      14/9/2021  Modify xpJSonEleType,mAddJSonStr, and add AddOneObjectEle
+'* 1.2      14/9/2021  Modify GetDateValue
 '*******************************************************
 Imports System.Text
 Public Class PigJSon
     Inherits PigBaseMini
-    Private Const CLS_VERSION As String = "1.0.17"
+    Private Const CLS_VERSION As String = "1.2.2"
 
     ''' <summary>The type of the JSON element</summary>
     Public Enum xpJSonEleType
@@ -38,6 +40,8 @@ Public Class PigJSon
         EleValue = 20
         ''' <summary>The value of the array element, which does not need to be escaped</summary>
         ArrayValue = 100
+        ''' <summary>The value of the object element, which does not need to be escaped</summary>
+        ObjectValue = 110
     End Enum
 
     ''' <summary>Separator or control symbol in JSON</summary>
@@ -296,11 +300,17 @@ Public Class PigJSon
             Dim strValue As String = ""
             strStepName = "mGetJSonValue"
             strRet = Me.mGetJSonValue(JSonKey, strValue)
-            If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            strStepName = "Convert string to datetime"
-            GetDateValue = Me.mLng2Date(CLng(strValue), False)
-            If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
-            Me.ClearErr()
+            If strRet <> "OK" Then Throw New Exception(strRet)
+            If IsDate(strValue) = True Then
+                strStepName = "CDate"
+                GetDateValue = CDate(strValue)
+            ElseIf IsNumeric(strValue) Then
+                strStepName = "mLng2Date"
+                GetDateValue = Me.mLng2Date(CLng(strValue), False)
+                If Me.LastErr <> "" Then Throw New Exception(Me.LastErr)
+            Else
+                Throw New Exception("Not date string")
+            End If
         Catch ex As Exception
             Me.SetSubErrInf("GetDateValue", strStepName, ex)
             If Me.IsGetValueErrRetNothing = True Then
@@ -320,11 +330,17 @@ Public Class PigJSon
             Dim strValue As String = ""
             strStepName = "mGetJSonValue"
             strRet = Me.mGetJSonValue(JSonKey, strValue)
-            If strRet <> "OK" Then Err.Raise(-1, , strRet)
-            strStepName = "Convert string to datetime"
-            GetDateValue = Me.mLng2Date(CLng(strValue), IsLocalTime)
-            If Me.LastErr <> "" Then Err.Raise(-1, , Me.LastErr)
-            Me.ClearErr()
+            If strRet <> "OK" Then Throw New Exception(strRet)
+            If IsDate(strValue) = True Then
+                strStepName = "CDate"
+                GetDateValue = CDate(strValue)
+            ElseIf IsNumeric(strValue) Then
+                strStepName = "mLng2Date"
+                GetDateValue = Me.mLng2Date(CLng(strValue), False)
+                If Me.LastErr <> "" Then Throw New Exception(Me.LastErr)
+            Else
+                Throw New Exception("Not date string")
+            End If
         Catch ex As Exception
             Me.SetSubErrInf("GetDateValue", strStepName, ex)
             If Me.IsGetValueErrRetNothing = True Then
@@ -603,7 +619,7 @@ Public Class PigJSon
                         sbJSonStr.Append(ColName)
                         sbJSonStr.Append(""":")
                     End If
-                Case xpJSonEleType.EleValue, xpJSonEleType.ArrayValue
+                Case xpJSonEleType.EleValue, xpJSonEleType.ArrayValue, xpJSonEleType.ObjectValue
                     Select Case JSonEleType
                         Case xpJSonEleType.EleValue
                             If IsChgCtlStr = True Then mSrc2CtlStr(ColValue)
@@ -611,7 +627,7 @@ Public Class PigJSon
                             sbJSonStr.Append("""")
                             sbJSonStr.Append(ColValue)
                             sbJSonStr.Append("""")
-                        Case xpJSonEleType.ArrayValue
+                        Case xpJSonEleType.ArrayValue, xpJSonEleType.ObjectValue
                             sbJSonStr.Append(ColValue)
                     End Select
                 Case Else
@@ -707,4 +723,29 @@ Public Class PigJSon
             Me.SetSubErrInf("New", strStepName, ex)
         End Try
     End Sub
+
+    ''' <summary>Add one object JSON element</summary>
+    ''' <param name="EleKey">The key of the element</param>
+    ''' <param name="ObjectEleValue">The object string value of the element</param>
+    ''' <param name="IsFirstEle">Is it the first element</param>
+    Public Overloads Sub AddOneObjectEle(EleKey As String, ObjectEleValue As String, Optional IsFirstEle As Boolean = False)
+        Dim strStepName As String = "", strRet As String = ""
+        Try
+            strStepName = "Check EleKey"
+            If EleKey = "" Then Err.Raise(-1, , "Need EleKey")
+            If IsFirstEle = True Then
+                strRet = mAddJSonStr(msbMain, xpJSonEleType.FristEle, EleKey, "")
+            Else
+                strRet = mAddJSonStr(msbMain, xpJSonEleType.NotFristEle, EleKey, "")
+            End If
+            If strRet <> "OK" Then Err.Raise(-1, , strRet)
+            strStepName = "Add EleValue"
+            strRet = mAddJSonStr(msbMain, xpJSonEleType.ObjectValue, "", ObjectEleValue)
+            If strRet <> "OK" Then Err.Raise(-1, , strRet)
+            Me.ClearErr()
+        Catch ex As Exception
+            Me.SetSubErrInf("AddObjectEleValue", strStepName, ex)
+        End Try
+    End Sub
+
 End Class
