@@ -12,9 +12,9 @@
 	  <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
 	  <RepositoryType>GIT</RepositoryType>
 	  <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonDemo</RepositoryUrl>
-	  <Version>1.1.2</Version>
+	  <Version>1.2.2</Version>
 	  <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-	  <PackageReleaseNotes>Add ObjectValue and fix bugs for GetDateValue.</PackageReleaseNotes>
+	  <PackageReleaseNotes>Reference pigcmd and simplify reading line code</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="PigCmdLib" Version="1.5.38" />
     <PackageReference Include="PigJSonLib" Version="1.5.5" />
   </ItemGroup>
 

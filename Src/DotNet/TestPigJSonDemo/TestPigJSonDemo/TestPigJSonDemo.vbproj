@@ -47,8 +47,14 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PigJSonLib">
-      <HintPath>..\..\PigJSonLib\PigJSonLib\bin\Debug\net45\PigJSonLib.dll</HintPath>
+    <Reference Include="PigCmdLib, Version=1.5.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PigCmdLib.1.5.38\lib\net40\PigCmdLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PigJSonLib, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PigJSonLib.1.5.5\lib\net45\PigJSonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PigToolsLiteLib, Version=2.2.49.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PigToolsLiteLib.2.2.50\lib\net40\PigToolsLiteLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

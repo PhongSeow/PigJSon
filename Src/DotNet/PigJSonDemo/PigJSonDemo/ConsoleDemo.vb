@@ -1,9 +1,12 @@
 ﻿Imports PigJSonLib
+Imports PigCmdLib
 
 Public Class ConsoleDemo
     Private pjAssemble As PigJSon
     Private pjParse As PigJSon
-    Private strJSonKey As String
+    Public JSonKey As String
+    Public JSonStr As String
+    Public PigConsole As New PigConsole
 
     Public Sub Main()
         Do While True
@@ -16,7 +19,7 @@ Public Class ConsoleDemo
             Console.WriteLine("Press C to New PigJSon")
             Console.WriteLine("Press D to UnlockEndSymbol")
             Console.WriteLine("*******************")
-            Select Case Console.ReadKey().Key
+            Select Case Console.ReadKey(True).Key
                 Case ConsoleKey.Q
                     Exit Do
                 Case ConsoleKey.A
@@ -30,7 +33,7 @@ Public Class ConsoleDemo
                         Console.WriteLine("Press C to Simple array elements")
                         Console.WriteLine("Press D to complex array elements")
                         Console.WriteLine("*******************")
-                        Select Case Console.ReadKey().Key
+                        Select Case Console.ReadKey(True).Key
                             Case ConsoleKey.Q
                                 Exit Do
                             Case ConsoleKey.A
@@ -53,18 +56,16 @@ Public Class ConsoleDemo
                     Loop
                 Case ConsoleKey.B
                     Console.WriteLine("#################")
-                    Console.WriteLine("Input JSonKey:")
-                    strJSonKey = Console.ReadLine()
-                    Console.WriteLine(strJSonKey & "=" & pjParse.GetStrValue(strJSonKey))
-                    If pjParse.LastErr <> "" Then Console.WriteLine(strJSonKey & " error = " & pjParse.LastErr)
+                    Me.PigConsole.GetLine("Input JSonKey", Me.JSonKey)
+                    Console.WriteLine(Me.JSonKey & "=" & pjParse.GetStrValue(Me.JSonKey))
+                    If pjParse.LastErr <> "" Then Console.WriteLine(Me.JSonKey & " error = " & pjParse.LastErr)
                     Console.WriteLine("#################")
                 Case ConsoleKey.C
                     Console.WriteLine("#################")
                     Console.WriteLine("New PigJSon")
                     Console.WriteLine("#################")
-                    Console.WriteLine("Input JSon:")
-                    Dim strJSon As String = Console.ReadLine
-                    Dim oPigJSon As New PigJSon(strJSon)
+                    Me.PigConsole.GetLine("Input JSon", Me.JSonStr)
+                    Dim oPigJSon As New PigJSon(Me.JSonStr)
                     If oPigJSon.LastErr <> "" Then
                         Console.WriteLine(oPigJSon.LastErr)
                     Else
