@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>PigJSonLib</RootNamespace>
-    <TargetFrameworks>net20;net30;net35;net40;net45;</TargetFrameworks>
+    <TargetFrameworks>net20;net30;net35;net48;</TargetFrameworks>
     <Authors>Seow Phong</Authors>
     <Company>Seow Phong Studio</Company>
     <Copyright>Copyright (c) 2021 Seow Phong</Copyright>
@@ -14,11 +14,11 @@ If the program is running in IIS, the advanced settings need set Enable 32-bit A
     <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
     <PackageIcon>SeowPhongLogo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.5</Version>
+    <Version>1.5.10</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType></RepositoryType>
     <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-    <PackageReleaseNotes>Add ObjectValue and fix bugs for GetDateValue.</PackageReleaseNotes>
+    <PackageReleaseNotes>support .net 4.8</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
