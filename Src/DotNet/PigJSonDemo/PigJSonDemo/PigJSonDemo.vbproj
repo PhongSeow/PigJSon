@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>PigJSonDemo</RootNamespace>
-	  <TargetFrameworks>net20;net30;net35;net48;</TargetFrameworks>
+	  <TargetFrameworks>net20;net30;net40;</TargetFrameworks>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Authors>Seow Phong</Authors>
 	  <Company>Seow Phong Studio</Company>
@@ -12,9 +12,9 @@
 	  <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
 	  <RepositoryType>GIT</RepositoryType>
 	  <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonDemo</RepositoryUrl>
-	  <Version>1.2.8</Version>
+	  <Version>1.2.28</Version>
 	  <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-	  <PackageReleaseNotes>Reference the latest class library.</PackageReleaseNotes>
+	  <PackageReleaseNotes>Reference PigToolsWinLib instead.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,8 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PigCmdLib" Version="1.9.50" />
-    <PackageReference Include="PigJSonLib" Version="1.5.10" />
+    <PackageReference Include="PigCmdLib" Version="2.0.38" />
+    <PackageReference Include="PigToolsWinLib" Version="3.1.82" />
   </ItemGroup>
 
 </Project>
