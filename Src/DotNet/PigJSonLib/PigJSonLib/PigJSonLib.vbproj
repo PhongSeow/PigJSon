@@ -5,20 +5,20 @@
     <TargetFrameworks>net20;net30;net35;net48;</TargetFrameworks>
     <Authors>Seow Phong</Authors>
     <Company>Seow Phong Studio</Company>
-    <Copyright>Copyright (c) 2021 Seow Phong</Copyright>
+    <Copyright>Copyright (c) 2021-2023 Seow Phong</Copyright>
     <PackageLicenseFile></PackageLicenseFile>
     <Description>A very lightweight JSON parsing and assembly toolkit.
 Microsoft Script Control 1.0 is required. Windows will be installed in advance.
 If the program is running in IIS, the advanced settings need set Enable 32-bit Applications of Application pools is true.</Description>
     <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonLib</RepositoryUrl>
-    <PackageProjectUrl>https://en.seowphong.com/oss/PigJSon/</PackageProjectUrl>
+    <PackageProjectUrl>https://en.seowphong.com</PackageProjectUrl>
     <PackageIcon>SeowPhongLogo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.10</Version>
+    <Version>1.5.12</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType></RepositoryType>
     <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-    <PackageReleaseNotes>support .net 4.8</PackageReleaseNotes>
+    <PackageReleaseNotes>Update project information.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
