@@ -12,9 +12,10 @@
 	  <PackageProjectUrl>https://en.seowphong.com</PackageProjectUrl>
 	  <RepositoryType>GIT</RepositoryType>
 	  <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonDemo</RepositoryUrl>
-	  <Version>1.2.30</Version>
+	  <Version>1.2.32</Version>
 	  <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-	  <PackageReleaseNotes>Update project information.</PackageReleaseNotes>
+	  <PackageReleaseNotes>Reference the latest class library.</PackageReleaseNotes>
+	  <PackageReadmeFile>SampleDemo.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,8 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PigCmdLib" Version="2.2.22" />
-    <PackageReference Include="PigToolsWinLib" Version="3.3.132" />
+    <None Include="..\..\..\..\Release\Demo\SampleDemo.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PigCmdLib" Version="2.2.50" />
+    <PackageReference Include="PigToolsWinLib" Version="3.3.152" />
   </ItemGroup>
 
 </Project>

@@ -8,17 +8,17 @@
     <Copyright>Copyright (c) 2021-2023 Seow Phong</Copyright>
     <PackageLicenseFile></PackageLicenseFile>
     <Description>A very lightweight JSON parsing and assembly toolkit.
-Microsoft Script Control 1.0 is required. Windows will be installed in advance.
-If the program is running in IIS, the advanced settings need set Enable 32-bit Applications of Application pools is true.</Description>
+</Description>
     <RepositoryUrl>https://github.com/PhongSeow/PigJSon/tree/master/Src/DotNet/PigJSonLib</RepositoryUrl>
     <PackageProjectUrl>https://en.seowphong.com</PackageProjectUrl>
     <PackageIcon>SeowPhongLogo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.12</Version>
+    <Version>1.5.16</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType></RepositoryType>
     <PackageTags>PigJSonLib lightweight JSON parsing assembly PigJSon</PackageTags>
-    <PackageReleaseNotes>Update project information.</PackageReleaseNotes>
+    <PackageReleaseNotes>Update readme.</PackageReleaseNotes>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +32,13 @@ If the program is running in IIS, the advanced settings need set Enable 32-bit A
 
   <ItemGroup>
     <Folder Include="My Project\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 
